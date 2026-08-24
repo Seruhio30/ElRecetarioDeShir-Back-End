@@ -1,0 +1,5 @@
+CREATE TABLE database_foundation_marker (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
