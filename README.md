@@ -7,34 +7,47 @@ Backend de **El Recetario de Shir**, construido como una aplicación Spring Boot
 - Java 21
 - Spring Boot 4.1.1
 - Maven
+- Spring Data JPA
+- MySQL
+- Flyway
 - JUnit
 - Git
 
+## Configuración de base de datos
+
+La aplicación obtiene la conexión mediante variables de entorno:
+
+- `SPRING_DATASOURCE_URL`
+- `SPRING_DATASOURCE_USERNAME`
+- `SPRING_DATASOURCE_PASSWORD`
+
+No se versionan credenciales reales.
+
+Flyway es la fuente de verdad del esquema de base de datos. Hibernate está configurado para validar el esquema, no para crearlo ni modificarlo.
+
 ## Ejecutar el proyecto
 
-Para iniciar la aplicación:
+Con las variables de entorno configuradas:
 
     ./mvnw spring-boot:run
 
-Para ejecutar las pruebas:
+Para ejecutar las pruebas de integración contra MySQL:
 
     ./mvnw test
 
 ## Estado actual
 
-Foundation inicial del backend completada con una aplicación Spring Boot mínima.
+Database foundation completada con:
 
-Todavía no incluye:
-
-- base de datos;
-- JPA;
+- datasource externo para MySQL;
+- Spring Data JPA;
+- MySQL Connector/J;
 - Flyway;
-- Spring Security;
-- APIs de negocio;
-- gestión de recetas.
+- migración técnica inicial;
+- validación real de conexión y migraciones contra MySQL.
 
 ## Siguiente bloque
 
-feat/database-foundation
+`feat/recipe-persistence-foundation`
 
-Incorporará MySQL, configuración del datasource mediante variables de entorno, Flyway y validación de migraciones.
+Será responsable del modelo de persistencia de recetas y sus migraciones de dominio.
