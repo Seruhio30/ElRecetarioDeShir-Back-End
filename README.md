@@ -37,17 +37,17 @@ Para ejecutar las pruebas de integración contra MySQL:
 
 ## Estado actual
 
-Database foundation completada con:
+Persistence foundation completada con:
 
 - datasource externo para MySQL;
 - Spring Data JPA;
-- MySQL Connector/J;
-- Flyway;
-- migración técnica inicial;
-- validación real de conexión y migraciones contra MySQL.
+- Flyway como fuente de verdad del esquema;
+- Hibernate configurado con `ddl-auto=validate`;
+- modelo persistente `Recipe`, `RecipeIngredient`, `RecipeStep` y `RecipeImage`;
+- enums de dominio para estado, categoría, tipo y dificultad;
+- migraciones V1 y V2 aplicadas;
+- relaciones, orden persistente, timestamps y constraints validados contra MySQL real.
 
 ## Siguiente bloque
 
-`feat/recipe-persistence-foundation`
-
-Será responsable del modelo de persistencia de recetas y sus migraciones de dominio.
+El siguiente bloque se decidirá desde el chat maestro después de revisar el modelo persistente.
