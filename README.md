@@ -20,8 +20,11 @@ La aplicación obtiene la conexión mediante variables de entorno:
 - `SPRING_DATASOURCE_URL`
 - `SPRING_DATASOURCE_USERNAME`
 - `SPRING_DATASOURCE_PASSWORD`
+- `MEDIA_STORAGE_ROOT`
 
-No se versionan credenciales reales.
+`MEDIA_STORAGE_ROOT` debe apuntar a un directorio privado y persistente fuera del repositorio. El backend crea el directorio si no existe y falla al iniciar si la configuración es inválida o el directorio no es utilizable.
+
+No se versionan credenciales reales ni contenido multimedia.
 
 Flyway es la fuente de verdad del esquema de base de datos. Hibernate está configurado para validar el esquema, no para crearlo ni modificarlo.
 
@@ -46,8 +49,10 @@ Persistence foundation completada con:
 - modelo persistente `Recipe`, `RecipeIngredient`, `RecipeStep` y `RecipeImage`;
 - enums de dominio para estado, categoría, tipo y dificultad;
 - migraciones V1 y V2 aplicadas;
-- relaciones, orden persistente, timestamps y constraints validados contra MySQL real.
+- relaciones, orden persistente, timestamps y constraints validados contra MySQL real;
+- foundation de almacenamiento multimedia privado local mediante `MediaStorageService`;
+- storage keys opacos generados por backend y protección contra acceso fuera del storage root.
 
 ## Siguiente bloque
 
-El siguiente bloque se decidirá desde el chat maestro después de revisar el modelo persistente.
+El siguiente bloque se decidirá desde el chat maestro. El candidato actual es el import de recetas legacy, después de resolver sus clasificaciones pendientes.
