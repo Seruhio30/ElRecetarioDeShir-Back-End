@@ -38,6 +38,28 @@ Para ejecutar las pruebas de integración contra MySQL:
 
     ./mvnw test
 
+### Import legacy de recetas
+
+El importer legacy no se ejecuta durante un inicio normal. Requiere activación explícita mediante el profile `legacy-import` y la propiedad habilitadora.
+
+Variables requeridas:
+
+- `LEGACY_RECIPE_IMPORT_ENABLED=true`
+- `LEGACY_RECIPE_JSON`
+- `LEGACY_RECIPE_ASSETS_ROOT`
+- `MEDIA_STORAGE_ROOT`
+- variables de conexión MySQL habituales
+
+Ejemplo:
+
+    SPRING_PROFILES_ACTIVE=legacy-import \
+    LEGACY_RECIPE_IMPORT_ENABLED=true \
+    LEGACY_RECIPE_JSON=/ruta/recipes.json \
+    LEGACY_RECIPE_ASSETS_ROOT=/ruta/assets \
+    ./mvnw spring-boot:run
+
+La primera ejecución importa las 26 recetas si la base no contiene estado legacy previo. Una segunda ejecución válida termina como `NO_OP`. Los estados parciales o incompatibles abortan el import.
+
 ## Estado actual
 
 Persistence foundation completada con:
@@ -51,8 +73,9 @@ Persistence foundation completada con:
 - migraciones V1 y V2 aplicadas;
 - relaciones, orden persistente, timestamps y constraints validados contra MySQL real;
 - foundation de almacenamiento multimedia privado local mediante `MediaStorageService`;
-- storage keys opacos generados por backend y protección contra acceso fuera del storage root.
+- storage keys opacos generados por backend y protección contra acceso fuera del storage root;
+- importer legacy explícito para las 26 recetas, con preflight, idempotencia y cleanup compensatorio del storage.
 
 ## Siguiente bloque
 
-El siguiente bloque se decidirá desde el chat maestro. El candidato actual es el import de recetas legacy, después de resolver sus clasificaciones pendientes.
+El siguiente bloque se decidirá desde el chat maestro después de completar y validar el import legacy.
