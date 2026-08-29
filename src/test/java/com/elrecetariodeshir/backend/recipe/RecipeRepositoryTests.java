@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.persistence.EntityManager;
 
-@SpringBootTest
+@SpringBootTest(properties = "app.media.storage.root=${java.io.tmpdir}/elrecetariodeshir-test-media")
 @Transactional
 class RecipeRepositoryTests {
 
