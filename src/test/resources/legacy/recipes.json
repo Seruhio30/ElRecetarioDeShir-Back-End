@@ -1,0 +1,782 @@
+[
+    {
+        "category": "international",
+        "country" : "España",
+        "type" : "main-course",
+        "name": "Paella",
+        "cuisine": "Española",
+        "ingredients": [
+            "400 g de muslito de pollo",
+            "400 g de magro o costillas de cerdo cortadas en trozos pequeños",
+            "350 g de arroz para paella con azafrán",
+            "1 litro y medio de caldo de pollo caliente",
+            "1 pimiento rojo mediano cortado en tiras",
+            "1 tomate maduro grande rallado",
+            "3 o 4 dientes de ajo picados finamente",
+            "Aceite de oliva virgen extra",
+            "Sal al gusto"
+        ],
+        "time": "No especificado",
+        "difficulty": "No especificado",
+        "steps": [
+            "Salpimentar el pollo y el cerdo.",
+            "Colocar aceite de oliva en una sartén y dorar el pollo y el cerdo a fuego medio hasta que estén bien cocinados.",
+            "Añadir el pimiento en tiras; cuando esté dorado, reservarlo.",
+            "Sofreír el ajo durante unos segundos.",
+            "Agregar el tomate rallado y mezclar.",
+            "Añadir el caldo de pollo caliente y dejar hervir.",
+            "Agregar el arroz poco a poco por toda la sartén.",
+            "Cocinar a fuego bajo hasta que el arroz reviente.",
+            "Colocar las tiras de pimiento encima.",
+            "Cuando esté listo, tapar y dejar reposar antes de servir."
+        ],
+        "image": "./assets/paella.jpg"
+    },
+    {
+        "category": "international",
+        "country" : "España",
+        "type" : "main-course",
+        "name": "Torta Española",
+        "cuisine": "Española",
+        "ingredients": [
+            "4 papas grandes",
+            "1 cebolla grande",
+            "5 huevos",
+            "Aceite de oliva cantidad necesaria",
+            "Sal",
+            "Pimienta"
+        ],
+        "time": "30 minutos",
+        "difficulty": "Fácil",
+        "steps": [
+            "Pelar y cortar las papas en chips delgados.",
+            "Cascar los huevos en un tazón aparte y salpimentar.",
+            "Cortar la cebolla en julianas.",
+            "En una sartén colocar suficiente aceite de oliva e incorporar la cebolla hasta cristalizarla.",
+            "Incorporar las papas y sofreír por 10 minutos aproximadamente hasta que estén suaves.",
+            "Batir los huevos, retirar las papas y la cebolla del fuego y dejar enfriar hasta temperatura ambiente.",
+            "Mezclar con el huevo y rectificar sabores.",
+            "Llevar al sartén y tapar; cuando los lados se vean dorados, dar vuelta con un plato grande.",
+            "Volver a poner en el sartén y terminar la cocción."
+        ],
+        "image": "./assets/torta_espanola.jpg"
+    },
+    {
+        "category": "international",
+        "country" : "Francia",
+        "type" : "main-course",
+        "name": "Coq au Vin",
+        "cuisine": "Francesa",
+        "ingredients": [
+            "4 muslos de pollo",
+            "400 ml de vino tinto",
+            "60 g de tocineta",
+            "1/2 cebolla grande",
+            "4 cebollitas",
+            "3 zanahorias",
+            "3 dientes de ajo",
+            "1 taza de champiñones naturales",
+            "2 cucharadas de harina",
+            "2 cucharadas de mantequilla",
+            "2 hojas de laurel",
+            "1 ramita de tomillo",
+            "Sal",
+            "Pimienta",
+            "Aceite de oliva",
+            "2 papas"
+        ],
+        "time": "No especificado",
+        "difficulty": "No especificado",
+        "steps": [
+            "Colocar el pollo en una bolsa ziploc y marinar con vino tinto durante 30 minutos en refrigeración.",
+            "En una olla con aceite de oliva, dorar la tocineta picada en cuadritos, retirar y reservar.",
+            "Retirar el pollo de la bolsa, secarlo y reservar el vino.",
+            "En la misma olla, dorar el pollo por 3 minutos de cada lado, retirar y reservar.",
+            "Sofreír cebolla, una zanahoria y ajo en mirepoix hasta cristalizar.",
+            "Incorporar pasta de tomate y harina; sofreír por 2 minutos.",
+            "Añadir laurel, tomillo y el vino reservado; dejar hervir.",
+            "Agregar el pollo, tapar y cocinar a fuego bajo de 20 a 30 minutos.",
+            "Cuando el pollo esté suave, retirarlo y colar la salsa.",
+            "Colocar la salsa colada en la olla, añadir cebollitas y cocinar 10 minutos.",
+            "Agregar zanahoria, tocineta y champiñones previamente cocinados.",
+            "Incorporar nuevamente el pollo, rectificar sabor y dejar hervir."
+        ],
+        "image": "./assets/coq_au_vin.jpeg"
+    },
+    {
+        "category": "international",
+        "country" : "Francia",
+        "type" : "main-course",
+        "name": "Puré de Papa",
+        "cuisine": "Francesa",
+        "ingredients": [
+            "4 papas grandes",
+            "Sal",
+            "Pimienta",
+            "Leche",
+            "Mantequilla"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "Pelar y hervir las papas hasta que estén suaves.",
+            "Colar las papas y triturarlas.",
+            "Añadir leche, mantequilla, sal y pimienta.",
+            "Servir como base o acompañamiento."
+        ],
+        "image": "./assets/pure_papa.jpg"
+    },
+    {
+        "category": "international",
+        "country" : "Francia",
+        "type" : "main-course",
+        "name": "Quiche Lorraine",
+        "cuisine": "Francesa",
+        "ingredients": [
+            "250 g de harina",
+            "125 g de mantequilla fría",
+            "Pizca de sal",
+            "60 ml de agua fría",
+            "Papel de hornear",
+            "Frijoles o arroz para hacer peso",
+            "200 g de tocineta",
+            "3 huevos",
+            "200 ml de crema dulce",
+            "100 ml de leche entera",
+            "Sal",
+            "Pimienta"
+        ],
+        "time": "No especificado",
+        "difficulty": "Media",
+        "steps": [
+            "Mezclar harina con sal e incorporar la mantequilla fría con las manos hasta lograr textura de migas.",
+            "Añadir el agua poco a poco y formar una masa.",
+            "Envolver en papel film y refrigerar por 30 minutos.",
+            "Estirar la masa, colocarla en un molde para tarta, pinchar con tenedor y refrigerar por 10 minutos.",
+            "Colocar papel de hornear con frijoles o arroz encima y hornear 15 minutos a 180 °C.",
+            "Retirar el peso y hornear 10 minutos más; sacar del horno y reservar.",
+            "Dorar la tocineta en una sartén y reservar.",
+            "Mezclar huevos, crema dulce, leche, sal y pimienta.",
+            "Colocar la tocineta sobre la masa horneada y verter la mezcla.",
+            "Hornear nuevamente hasta que esté firme y servir."
+        ],
+        "image": "./assets/quiche_lorraine.jpeg"
+    },
+    {
+        "category": "international",
+        "country" : "Perú",
+        "type" : "main-course",
+        "name": "Causa Limeña",
+        "cuisine": "Peruana",
+        "ingredients": [
+            "500 g de papa amarilla",
+            "3 cucharadas de ají amarillo",
+            "Jugo de 1 limón",
+            "Sal al gusto",
+            "1 pechuga de pollo cocinada y desmenuzada",
+            "2 cucharadas de mayonesa",
+            "1/4 de cebolla morada picada",
+            "1 aguacate",
+            "1 huevo duro",
+            "Aceitunas negras",
+            "Hojas de lechuga"
+        ],
+        "time": "No especificado",
+        "difficulty": "Media",
+        "steps": [
+            "Hervir las papas hasta que estén suaves.",
+            "Prensar las papas calientes con jugo de limón y ají amarillo.",
+            "Refrigerar la mezcla por 10 minutos y reservar.",
+            "Hervir la pechuga, desmenuzarla y mezclarla con mayonesa, cebolla morada y sal.",
+            "Colocar hojas de lechuga en un plato.",
+            "En un cilindro, colocar una capa de papa, luego pollo y rodajas de aguacate.",
+            "Agregar otra capa de papa, retirar el cilindro y decorar con huevo duro y aceitunas negras."
+        ],
+        "image": "./assets/causa_limena.jpeg"
+    },
+    {
+        "category": "international",
+        "country" : "Perú",
+        "type" : "main-course",
+        "name": "Arroz Chaufa",
+        "cuisine": "Peruana",
+        "ingredients": [
+            "4 tazas de arroz blanco cocido",
+            "240 g de pollo cocido en cubos",
+            "3 huevos revueltos",
+            "1 cucharada de aceite de ajonjolí",
+            "2 tallos de cebollino",
+            "1 cucharadita de jengibre rallado",
+            "2 dientes de ajo picados",
+            "Salsa de soya",
+            "Sal",
+            "Pimienta"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "En una sartén grande o wok, colocar aceite.",
+            "Cascar los huevos, salpimentar, revolver, retirar y reservar.",
+            "Agregar aceite a la sartén y saltear el pollo hasta dorar.",
+            "Añadir el ajo picado y el jengibre rallado; cocinar unos segundos.",
+            "Añadir el arroz frío y saltear a fuego alto.",
+            "Agregar salsa de soya e incorporar el huevo revuelto.",
+            "Añadir cebollino y aceite de ajonjolí.",
+            "Rectificar sabores antes de servir."
+        ],
+        "image": "./assets/arroz_chaufa.jpeg"
+    },
+    {
+        "category": "international",
+        "country" : "Perú",
+        "type" : "main-course",
+        "name": "Papa a la Huancaína",
+        "cuisine": "Peruana",
+        "ingredients": [
+            "4 papas medianas",
+            "100 g de queso fresco",
+            "2 cucharadas de ají amarillo",
+            "100 ml de leche evaporada",
+            "1 paquete de galleta soda",
+            "1 cucharada de aceite de oliva",
+            "Sal",
+            "Pimienta",
+            "Lechuga",
+            "Huevo duro",
+            "Aceitunas verdes o negras"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "Hervir las papas con cáscara.",
+            "Pelar las papas, cortarlas en rodajas y reservar.",
+            "Licuar queso fresco, ají amarillo, leche evaporada, galleta soda y aceite de oliva.",
+            "Rectificar sabores y lograr una textura cremosa no líquida.",
+            "Colocar una cama de lechuga en un plato.",
+            "Acomodar las papas en rodajas y bañarlas con la salsa.",
+            "Decorar con huevo duro y aceitunas."
+        ],
+        "image": "./assets/papa_huancaina.jpeg"
+    },
+    {
+        "category": "international",
+        "country" : "México",
+        "type" : "main-course",
+        "name": "Salsa Roja",
+        "cuisine": "Mexicana",
+        "ingredients": [
+            "4 tomates rojos",
+            "1/2 cebolla grande",
+            "1 ajo",
+            "1/2 chile guajillo",
+            "1/2 taza de agua",
+            "Sal",
+            "Aceite de oliva"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "Hidratar el chile guajillo en agua y retirar las semillas.",
+            "Asar tomate, cebolla y ajo en una sartén hasta que se vean quemados.",
+            "Licuar todos los ingredientes.",
+            "En la misma sartén, colocar un chorrito de aceite de oliva.",
+            "Incorporar la salsa y cocinar hasta que cambie de color."
+        ],
+        "image": "./assets/salsa_roja.jpg"
+    },
+    {
+        "category": "international",
+        "country" : "México",
+        "type" : "main-course",
+        "name": "Salsa Verde",
+        "cuisine": "Mexicana",
+        "ingredients": [
+            "4 tomates verdes mexicanos",
+            "1/2 cebolla grande",
+            "1 ajo",
+            "1/2 chile guajillo",
+            "1/4 taza de agua",
+            "1/2 taza de culantro",
+            "Sal",
+            "Aceite de oliva"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "Hidratar el chile guajillo en agua y retirar las semillas.",
+            "Asar tomate, cebolla y ajo en una sartén hasta que se vean quemados.",
+            "Licuar todos los ingredientes con culantro y agua.",
+            "En la misma sartén, colocar un chorrito de aceite de oliva.",
+            "Incorporar la salsa y cocinar hasta que cambie de color."
+        ],
+        "image": "./assets/salsa_verde.jpg"
+    },
+    {
+        "category": "international",
+        "country" : "México",
+        "type" : "main-course",
+        "name": "Guacamole",
+        "cuisine": "Mexicana",
+        "ingredients": [
+            "1/2 cebolla",
+            "1 limón",
+            "2 aguacates",
+            "1/2 tomate",
+            "1/3 taza de culantro",
+            "2 cucharadas de natilla",
+            "Sal"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "Cortar la cebolla en brunoise.",
+            "Incorporar el jugo de limón y dejar reposar por 10 minutos.",
+            "Añadir el aguacate y triturar con tenedor.",
+            "Incorporar tomate en brunoise y culantro en chiffonade.",
+            "Agregar natilla, mezclar y rectificar sal."
+        ],
+        "image": "./assets/guacamole.jpeg"
+    },
+    {
+        "category": "international",
+        "country" : "México",
+        "type" : "main-course",
+        "name": "Totopos",
+        "cuisine": "Mexicana",
+        "ingredients": [
+            "Tortilla de maíz",
+            "Aceite",
+            "Sal"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "Cortar las tortillas en triángulos.",
+            "Freír las tortillas en abundante aceite bien caliente.",
+            "Retirar del aceite y colocar sobre toalla de papel.",
+            "Agregar sal al gusto."
+        ],
+        "image": "./assets/totopos.jpeg"
+    },
+    {
+        "category": "international",
+        "country" : "México",
+        "type" : "main-course",
+        "name": "Carne al Pastor",
+        "cuisine": "Mexicana",
+        "ingredients": [
+            "1/2 chile ancho",
+            "1/2 chile guajillo",
+            "500 g de carne de cerdo",
+            "1 taza de piña",
+            "1 cebolla pequeña",
+            "2 ajos",
+            "1 cucharada de vinagre blanco",
+            "1 cucharadita de comino",
+            "1 cucharadita de orégano",
+            "Sal",
+            "1 cucharadita de achiote"
+        ],
+        "time": "No especificado",
+        "difficulty": "Media",
+        "steps": [
+            "Hidratar los chiles en agua por 10 minutos y retirar las semillas.",
+            "Licuar todos los ingredientes para formar el adobo.",
+            "Cubrir la carne con el adobo y refrigerar por 4 horas.",
+            "Colocar la carne en pinchos, una pieza sobre otra, y agregar piña entre bistecs si se desea.",
+            "Hornear a 240 °C durante 30 minutos por cada lado.",
+            "Cuando esté dorado, cortar tipo trompo.",
+            "Realizar una segunda cocción en sartén si se desea."
+        ],
+        "image": "./assets/carne_pastor.jpg"
+    },
+    {
+        "category": "international",
+        "country" : "México",
+        "type" : "main-course",
+        "name": "Chilaquiles",
+        "cuisine": "Mexicana",
+        "ingredients": [
+            "Totopos",
+            "Salsa roja",
+            "Cerdo al pastor",
+            "Natilla",
+            "1/4 cebolla en juliana",
+            "1 cucharada de culantro picado",
+            "1 cucharada de piña en brunoise"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "Colocar totopos en un tazón.",
+            "Bañar con salsa roja o verde.",
+            "Añadir carne al pastor.",
+            "Decorar con natilla, culantro, cebolla y piña."
+        ],
+        "image": "./assets/chilaquiles.jpg"
+    },
+    {
+        "category": "international",
+       "country" : "México",
+        "type" : "main-course",
+        "name": "Quesadillas",
+        "cuisine": "Mexicana",
+        "ingredients": [
+            "Tortilla de harina",
+            "Queso mozzarella",
+            "Carne al pastor",
+            "Guacamole",
+            "Natilla"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "Colocar una tortilla de harina en una sartén.",
+            "Añadir queso mozzarella y cubrir con otra tortilla.",
+            "Cocinar hasta dorar por ambos lados.",
+            "Retirar del fuego, separar las tortillas y rellenar con carne al pastor, guacamole y natilla."
+        ],
+        "image": "./assets/quesadillas.jpeg"
+    },
+    {
+        "category": "international",
+        "country" : "México",
+        "type" : "main-course",
+        "name": "Huaraches",
+        "cuisine": "Mexicana",
+        "ingredients": [
+            "Harina de maíz",
+            "Agua",
+            "Sal",
+            "Frijoles molidos",
+            "Carne al pastor",
+            "Lechuga",
+            "Tomate",
+            "Natilla",
+            "Guacamole"
+        ],
+        "time": "No especificado",
+        "difficulty": "Media",
+        "steps": [
+            "Mezclar harina de maíz con agua y sal.",
+            "Formar una tortilla ovalada simulando una chancla.",
+            "Cocinar en sartén hasta dorar.",
+            "Colocar encima frijoles molidos, carne al pastor, lechuga, tomate, guacamole y natilla."
+        ],
+        "image": "./assets/huaraches.jpg"
+    }
+    ,
+    { "category": "international",
+        "country" : "México",
+        "type" : "main-course",
+        "name": "Tacos de Birria con Consomé",
+        "cuisine": "Mexicana",
+        "ingredients": [
+            "2 kg de costilla de res",
+            "2 kg de tomates maduros partidos en cuartos",
+            "1 cebolla grande partida en cuartos",
+            "12 dientes de ajo",
+            "20 granos de pimienta grande",
+            "20 granos de pimienta pequeña",
+            "1 cucharada de comino",
+            "1 cucharada de ajo seco",
+            "1 1/2 cucharada de tomillo fresco o seco",
+            "1 cucharada de orégano fresco picado o seco",
+            "1 rajita de canela",
+            "8 hojas de laurel",
+            "2 cucharadas de vinagre blanco",
+            "1 litro de agua",
+            "Sal al gusto",
+            "Chile ancho seco desvenado y sin semillas",
+            "Chile guajillo",
+            "Queso maduro o mozzarella",
+            "Culantro picado",
+            "Cebolla finamente picada",
+            "Limones en trozos"
+        ],
+        "time": "No especificado",
+        "difficulty": "Alta",
+        "steps": [
+            "Colocar la costilla cortada en trozos pequeños en una olla con agua hasta cubrirla y cebolla; hervir.",
+            "En una olla grande, colocar aceite, tomates, cebolla, ajos, pimientas, especias y chiles secos.",
+            "Cocinar todo por 10 minutos a fuego alto.",
+            "Agregar vinagre, agua caliente y sal; hervir 10 minutos.",
+            "Licuar todo a máxima potencia hasta que quede bien molido.",
+            "Agregar el adobo sobre la costilla y rectificar sal.",
+            "Cocinar en olla de presión por 2 horas, en olla de cocimiento lento toda la noche o en olla normal a fuego medio por 6 horas.",
+            "Cuidar los niveles de líquido durante la cocción.",
+            "Sacar la carne y picarla tibia con cuchillo.",
+            "Colar el caldo o consomé, rectificar sabor y sal.",
+            "Desgrasar el caldo y guardar para el armado.",
+            "Servir con queso, culantro, cebolla y limón."
+        ],
+        "image": "./assets/taco_birria.jpg"
+    },
+    {
+        "category": "international",
+        "country" : "México",
+        "type" : "main-course",
+        "name": "Sopa Azteca",
+        "cuisine": "Mexicana",
+        "ingredients": [
+            "250 g de tortillas de maíz",
+            "Aceite cantidad necesaria",
+            "Sal",
+            "1 chile pasilla",
+            "500 g de tomate maduro",
+            "3 dientes de ajo grandes",
+            "1 cebolla mediana",
+            "3 hojas grandes de laurel",
+            "500 ml de caldo de pollo",
+            "Pollo mechado opcional",
+            "Pimienta",
+            "Queso semi maduro o tierno",
+            "Crema ácida o natilla espesa",
+            "Aguacate"
+        ],
+        "time": "No especificado",
+        "difficulty": "Media",
+        "steps": [
+            "Cortar las tortillas en tiras.",
+            "Cortar el chile pasilla en aros y retirar todas las semillas.",
+            "Freír las tortillas y agregar sal al sacarlas del aceite.",
+            "Freír los aros de chile y reservar.",
+            "Cortar el queso en cuadros.",
+            "Licuar tomate, cebolla, pimienta, sal y ajos.",
+            "Freír la preparación un par de minutos con laurel.",
+            "Agregar caldo de pollo y rectificar sabor y sal.",
+            "Servir con tortillas, chile, queso, crema o natilla, aguacate y pollo si se desea."
+        ],
+        "image": "./assets/sopa_azteca.jpg"
+    },
+
+    {
+        "category": "national",
+        "country" : "Costa Rica",
+        "type" : "main-course",
+        "name": "Arroz con Pollo",
+        "cuisine": "Costarricense",
+        "ingredients": [
+            "1 taza de arroz",
+            "2 tazas de caldo de pollo",
+            "1 pechuga de pollo",
+            "1/2 cebolla en brunoise",
+            "1/2 chile dulce en brunoise",
+            "2 ajos",
+            "1/2 taza de zanahoria en brunoise",
+            "1/2 taza de vainica en brunoise",
+            "2 cucharadas de culantro picado",
+            "3 cucharadas de salsa Lizano",
+            "1 cucharadita de achiote",
+            "Sal",
+            "Pimienta"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "Hervir la pechuga de pollo y desmenuzarla.",
+            "Cocinar el arroz usando el caldo del pollo.",
+            "Sofreír cebolla, chile dulce y ajo en una sartén con aceite.",
+            "Incorporar el pollo y achiote.",
+            "Añadir zanahoria y vainica hervidas.",
+            "Incorporar el arroz frío y salsa Lizano.",
+            "Mezclar bien y terminar con culantro picado fino."
+        ],
+        "image": "./assets/arroz_pollo.jpg"
+    },
+    {
+        "category": "national",
+        "country" : "Costa Rica",
+        "type" : "main-course",
+        "name": "Picadillo de Papa",
+        "cuisine": "Costarricense",
+        "ingredients": [
+            "2 papas medianas en brunoise",
+            "150 g de chorizo",
+            "1/2 cebolla en brunoise",
+            "1/2 chile dulce en brunoise",
+            "1 diente de ajo",
+            "1 cucharadita de achiote",
+            "2 cucharadas de culantro",
+            "Sal",
+            "Pimienta"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "Sofreír cebolla, chile dulce y ajo en una sartén con un chorrito de aceite.",
+            "Retirar la tripa del chorizo e incorporarlo a la sartén con el achiote.",
+            "Soltar el chorizo con un tenedor y cocinar hasta dorar.",
+            "Añadir la papa en brunoise previamente hervida.",
+            "Mezclar bien, rectificar sabor e incorporar culantro."
+        ],
+        "image": "./assets/picadillo_papa.jpg"
+    },
+    {
+        "category": "national",
+        "country" : "Costa Rica",
+        "type" : "main-course",
+        "name": "Ensalada Rusa",
+        "cuisine": "Costarricense",
+        "ingredients": [
+            "1 papa mediana en brunoise",
+            "1 zanahoria en brunoise",
+            "1 remolacha mediana en brunoise",
+            "2 huevos duros",
+            "3 cucharadas de mayonesa",
+            "1 cucharadita de mostaza",
+            "Sal",
+            "Pimienta"
+        ],
+        "time": "No especificado",
+        "difficulty": "Fácil",
+        "steps": [
+            "Hervir la remolacha, la papa y la zanahoria hasta que estén suaves al dente.",
+            "Escurrir los vegetales.",
+            "Mezclar todos los ingredientes en un bowl.",
+            "Refrigerar antes de servir."
+        ],
+        "image": "./assets/ensalada_rusa.jpg"
+    },
+    {
+        "category": "national",
+        "country" : "Costa Rica",
+        "type" : "main-course",
+        "name": "Enyucado de Carne",
+        "cuisine": "Costarricense",
+        "ingredients": [
+            "200 g de cecina",
+            "1/4 cebolla",
+            "1/4 chile dulce",
+            "1 ajo",
+            "Sal",
+            "1 tomate",
+            "1 cucharada de achiote",
+            "1 cucharada de salsa Lizano",
+            "Aceite",
+            "500 g de yuca",
+            "Mantequilla"
+        ],
+        "time": "No especificado",
+        "difficulty": "Media",
+        "steps": [
+            "Cocinar la cecina en olla de presión con chile, cebolla y ajo.",
+            "Retirar la carne y picarla finamente.",
+            "En una sartén, calentar achiote e incorporar tomate en brunoise.",
+            "Saltear, incorporar la carne y añadir salsa Lizano.",
+            "Pelar la yuca y hervirla con agua y sal hasta que esté suave.",
+            "Escurrir la yuca y, aún caliente, hacer un puré con mantequilla hasta obtener una masa suave.",
+            "Formar una bolita de yuca, rellenar con carne y cerrar con forma ovalada.",
+            "Freír en abundante aceite bien caliente."
+        ],
+        "image": "./assets/enyucado_carne.jpg"
+    },
+    {
+        "category": "international",
+        "country" : "Japón",
+        "type" : "main-course",
+        "name": "Arroz para Sushi",
+        "cuisine": "Japonesa",
+        "ingredients": [
+            "1 kg de arroz",
+            "Vinagre de arroz",
+            "Azúcar",
+            "Agua",
+            "1/2 cucharadita de sal"
+        ],
+        "time": "No especificado",
+        "difficulty": "Media",
+        "steps": [
+            "Colocar el arroz en un bowl y lavarlo al menos 3 veces hasta que el agua salga limpia.",
+            "Por cada taza de arroz, usar 1.5 tazas de agua.",
+            "Llevar a hervir el arroz con agua en una olla.",
+            "Cuando esté listo, apagar el fuego y dejar tapado 20 minutos.",
+            "Incorporar vinagre de arroz, azúcar y sal previamente licuados.",
+            "Dejar reposar y enfriar antes de usar."
+        ],
+        "image": "./assets/arroz_sushi.jpg"
+    },
+    {
+         "category": "international",
+        "country" : "Japón",
+        "type" : "main-course",
+        "name": "Salsa Teriyaki",
+        "cuisine": "Japonesa",
+        "ingredients": [
+            "Salsa de soya",
+            "Azúcar",
+            "Agua",
+            "Zanahoria picada",
+            "Cebolla",
+            "Jengibre"
+        ],
+        "time": "No especificado",
+        "difficulty": "Media",
+        "steps": [
+            "Usar partes iguales de agua, salsa de soya y azúcar.",
+            "Caramelizar primero el azúcar.",
+            "Agregar salsa de soya y agua.",
+            "Llevar a hervir con zanahoria, cebolla y jengibre.",
+            "Cocinar 2 horas a fuego bajo hasta obtener una reducción.",
+            "Colar y dejar enfriar."
+        ],
+        "image": "./assets/salsa_teriyaki.jpg"
+    },
+    {
+         "category": "international",
+        "country" : "Japón",
+        "type" : "main-course",
+        "name": "Salsa de Anguila",
+        "cuisine": "Japonesa",
+        "ingredients": [
+            "Salsa de soya",
+            "Azúcar",
+            "Agua",
+            "Zanahoria picada",
+            "Cebolla",
+            "Jengibre",
+            "Piel de salmón",
+            "Harina de tapioca"
+        ],
+        "time": "No especificado",
+        "difficulty": "Media",
+        "steps": [
+            "Usar partes iguales de agua, salsa de soya y azúcar.",
+            "Caramelizar el azúcar.",
+            "Agregar salsa de soya y agua.",
+            "Hervir con zanahoria, cebolla, jengibre y piel de salmón durante 2 horas a fuego bajo.",
+            "Reducir y espesar con harina de tapioca.",
+            "Colar y dejar enfriar."
+        ],
+        "image": "./assets/salsa_anguila.jpg"
+    },
+    {
+         "category": "international",
+        "country" : "Japón",
+        "type" : "main-course",
+        "name": "Sushi California Roll",
+        "cuisine": "Japonesa",
+        "ingredients": [
+            "120 g de arroz para sushi",
+            "1/2 alga nori",
+            "1 surimi",
+            "Aguacate",
+            "Pepino",
+            "Semillas de sésamo",
+            "Salsa teriyaki o salsa de anguila"
+        ],
+        "time": "No especificado",
+        "difficulty": "Media",
+        "steps": [
+            "Colocar plástico sobre el makisu.",
+            "Poner 1/2 alga nori y esparcir arroz para sushi sobre toda el alga.",
+            "Dar vuelta al nori para que el arroz quede abajo.",
+            "Colocar surimi, pepino y lonjas de aguacate.",
+            "Enrollar y formar el rollo de sushi.",
+            "Cubrir con papel film y dar forma cuadrada con el makisu.",
+            "Cortar con cuchillo bien afilado, primero al centro y luego en porciones hasta obtener 10 piezas.",
+            "Servir en plato alargado con salsa teriyaki o de anguila y decorar con semillas de sésamo."
+        ],
+        "image": "./assets/sushi_california_roll.jpeg"
+    }
+]

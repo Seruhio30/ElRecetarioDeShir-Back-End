@@ -79,7 +79,7 @@ No other difficulty variants were found.
 | 03 | Coq au Vin | `coq-au-vin` | `MAIN_COURSE` | `HARD` | null | `FR` |
 | 04 | Puré de Papa | `pure-de-papa` | `SIDE_DISH` | `EASY` | null | `FR` |
 | 05 | Quiche Lorraine | `quiche-lorraine` | `MAIN_COURSE` | `MEDIUM` | null | `FR` |
-| 06 | Causa Limeña | `causa-limena` | `MAIN_COURSE` | `MEDIUM` | null | `PE` |
+| 06 | Causa Limeña | `causa-limena` | `SIDE_DISH` | `MEDIUM` | null | `PE` |
 | 07 | Arroz Chaufa | `arroz-chaufa` | `MAIN_COURSE` | `EASY` | null | `PE` |
 | 08 | Papa a la Huancaína | `papa-a-la-huancaina` | `SIDE_DISH` | `EASY` | null | `PE` |
 | 09 | Salsa Roja | `salsa-roja` | `SAUCE` | `EASY` | null | `MX` |
@@ -103,8 +103,8 @@ No other difficulty variants were found.
 
 Type totals:
 
-- `MAIN_COURSE`: 15
-- `SIDE_DISH`: 5
+- `MAIN_COURSE`: 14
+- `SIDE_DISH`: 6
 - `SAUCE`: 5
 - `BASE`: 1
 - `DESSERT`: 0
@@ -112,7 +112,7 @@ Type totals:
 
 ### Type ambiguities intentionally resolved
 
-- `Causa Limeña -> MAIN_COURSE`: often served as an appetizer, but no appetizer type exists.
+- `Causa Limeña -> SIDE_DISH`: approved migration decision for this import block.
 - `Papa a la Huancaína -> SIDE_DISH`: can be appetizer or accompaniment; `SIDE_DISH` is the closest available type.
 - `Guacamole -> SAUCE`: technically a dip/accompaniment; `SAUCE` is the closest available type.
 - `Totopos -> SIDE_DISH`: snack/accompaniment; no snack type exists.
@@ -160,7 +160,7 @@ Every recipe currently has exactly one referenced image.
 Conceptual mapping:
 
 RecipeImage:
-- storageKey = `recipes/<slug>/<originalFilename>`
+- storageKey = opaque key returned by `MediaStorageService`
 - originalFilename = filename from legacy image path
 - mediaType = `image/jpeg`
 - altText = recipe name
@@ -173,7 +173,7 @@ Legacy:
 `./assets/paella.jpg`
 
 Future metadata:
-- storageKey: `recipes/paella/paella.jpg`
+- storageKey: generated opaque key such as `<uuid>.jpg`
 - originalFilename: `paella.jpg`
 - mediaType: `image/jpeg`
 - altText: `Paella`
