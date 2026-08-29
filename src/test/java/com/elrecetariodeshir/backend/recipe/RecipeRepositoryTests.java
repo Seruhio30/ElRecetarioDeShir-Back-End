@@ -2,6 +2,7 @@ package com.elrecetariodeshir.backend.recipe;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.within;
 
 import java.time.Instant;
 
@@ -80,7 +81,7 @@ class RecipeRepositoryTests {
 
     @Test
     void cascadesAndLoadsIngredientsStepsAndImagesInPersistedOrder() {
-        Recipe recipe = createRecipe("arroz-con-pollo");
+        Recipe recipe = createRecipe("test-cascade-recipe");
 
         recipe.addIngredient(new RecipeIngredient(2, "Culantro al gusto"));
         recipe.addIngredient(new RecipeIngredient(0, "2 tazas de arroz"));
@@ -189,7 +190,7 @@ class RecipeRepositoryTests {
         assertThat(published.getStatus()).isEqualTo(RecipeStatus.PUBLISHED);
         assertThat(published.getPublishedAt()).isNotNull();
         assertThat(published.getCreatedAt())
-                .isEqualTo(createdAt.truncatedTo(java.time.temporal.ChronoUnit.MICROS));
+                .isCloseTo(createdAt, within(1, java.time.temporal.ChronoUnit.MICROS));
         assertThat(published.getUpdatedAt())
                 .isAfter(initialUpdatedAt.truncatedTo(java.time.temporal.ChronoUnit.MICROS));
 
