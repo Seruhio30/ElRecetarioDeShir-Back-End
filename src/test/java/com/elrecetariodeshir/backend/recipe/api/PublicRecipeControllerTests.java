@@ -1,7 +1,9 @@
 package com.elrecetariodeshir.backend.recipe.api;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -430,4 +432,36 @@ class PublicRecipeControllerTests {
 
         return recipe;
     }
+
+    @Test
+    void allowsDevelopmentFrontendOriginForPublicRecipeApi() throws Exception {
+        mockMvc.perform(get("/api/recipes")
+                        .header("Origin", "http://localhost:5501"))
+                .andExpect(status().isOk())
+                .andExpect(header().string(
+                        "Access-Control-Allow-Origin",
+                        "http://localhost:5501"));
+    }
+
+    @Test
+    void rejectsUnknownOriginForPublicRecipeApi() throws Exception {
+        mockMvc.perform(get("/api/recipes")
+                        .header("Origin", "http://localhost:5502"))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void handlesCorsPreflightForDevelopmentFrontendOrigin() throws Exception {
+        mockMvc.perform(options("/api/recipes")
+                        .header("Origin", "http://localhost:5501")
+                        .header("Access-Control-Request-Method", "GET"))
+                .andExpect(status().isOk())
+                .andExpect(header().string(
+                        "Access-Control-Allow-Origin",
+                        "http://localhost:5501"))
+                .andExpect(header().string(
+                        "Access-Control-Allow-Methods",
+                        org.hamcrest.Matchers.containsString("GET")));
+    }
+
 }
