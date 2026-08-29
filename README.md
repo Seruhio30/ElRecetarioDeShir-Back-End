@@ -8,6 +8,7 @@ Backend de **El Recetario de Shir**, construido como una aplicación Spring Boot
 - Spring Boot 4.1.1
 - Maven
 - Spring Data JPA
+- Spring Web
 - MySQL
 - Flyway
 - JUnit
@@ -74,8 +75,17 @@ Persistence foundation completada con:
 - relaciones, orden persistente, timestamps y constraints validados contra MySQL real;
 - foundation de almacenamiento multimedia privado local mediante `MediaStorageService`;
 - storage keys opacos generados por backend y protección contra acceso fuera del storage root;
-- importer legacy explícito para las 26 recetas, con preflight, idempotencia y cleanup compensatorio del storage.
+- importer legacy explícito para las 26 recetas, con preflight, idempotencia y cleanup compensatorio del storage;
+- API pública de solo lectura para recetas `PUBLISHED`:
+  - `GET /api/recipes`
+  - `GET /api/recipes/{slug}`
+  - `GET /api/recipes/{slug}/images/{imageId}`
+- listado con paginación zero-based, tamaño máximo controlado, filtros por `category`, `country`, `type`, `difficulty` y búsqueda case-insensitive por nombre mediante `q`;
+- DTOs públicos separados para listado y detalle, sin exponer entidades JPA ni `storageKey`;
+- entrega segura de imágenes mediante `MediaStorageService`, validando receta publicada y pertenencia de la imagen.
 
 ## Siguiente bloque
 
-El siguiente bloque se decidirá desde el chat maestro después de completar y validar el import legacy.
+Integración del frontend con la API pública:
+
+`feat/public-recipe-api-integration`
