@@ -78,6 +78,7 @@ public class AdminSecurityConfig {
                 "GET",
                 "POST",
                 "PATCH",
+                "DELETE",
                 "OPTIONS"));
         adminCors.setAllowedHeaders(List.of(
                 "Content-Type",

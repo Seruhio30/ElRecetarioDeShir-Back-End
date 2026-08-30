@@ -174,6 +174,11 @@ public class Recipe {
         images.add(image);
     }
 
+    public void removeImage(RecipeImage image) {
+        images.remove(image);
+        image.setRecipe(null);
+    }
+
     public Long getId() {
         return id;
     }

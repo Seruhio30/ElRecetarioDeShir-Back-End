@@ -111,6 +111,10 @@ public class RecipeImage {
         return createdAt;
     }
 
+    public void setAltText(String altText) {
+        this.altText = altText;
+    }
+
     public void setPosition(int position) {
         this.position = position;
     }
