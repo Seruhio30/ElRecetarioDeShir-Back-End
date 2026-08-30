@@ -12,4 +12,7 @@ public interface RecipeRepository
     List<Recipe> findAllBySlugInOrNameIn(
             Collection<String> slugs,
             Collection<String> names);
+
+
+    boolean existsBySlug(String slug);
 }

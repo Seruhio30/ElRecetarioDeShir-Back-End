@@ -12,6 +12,10 @@ public final class RecipeSpecifications {
                 criteriaBuilder.equal(root.get("status"), RecipeStatus.PUBLISHED);
     }
 
+    public static Specification<Recipe> hasStatus(RecipeStatus status) {
+        return optionalEquals("status", status);
+    }
+
     public static Specification<Recipe> hasCategory(RecipeCategory category) {
         return optionalEquals("category", category);
     }
