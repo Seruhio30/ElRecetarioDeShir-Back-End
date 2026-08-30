@@ -145,6 +145,30 @@ public class Recipe {
         steps.add(step);
     }
 
+    public void clearIngredients() {
+        ingredients.clear();
+    }
+
+    public void clearSteps() {
+        steps.clear();
+    }
+
+    public void replaceIngredients(List<RecipeIngredient> newIngredients) {
+        clearIngredients();
+
+        for (RecipeIngredient ingredient : newIngredients) {
+            addIngredient(ingredient);
+        }
+    }
+
+    public void replaceSteps(List<RecipeStep> newSteps) {
+        clearSteps();
+
+        for (RecipeStep step : newSteps) {
+            addStep(step);
+        }
+    }
+
     public void addImage(RecipeImage image) {
         image.setRecipe(this);
         images.add(image);
