@@ -1,5 +1,7 @@
 package com.elrecetariodeshir.backend.recipe;
 
+import com.elrecetariodeshir.backend.testsupport.DatabaseIntegrationTest;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.within;
@@ -8,14 +10,13 @@ import java.time.Instant;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.persistence.EntityManager;
 
-@SpringBootTest(properties = "app.media.storage.root=${java.io.tmpdir}/elrecetariodeshir-test-media")
+@DatabaseIntegrationTest
 @Transactional
 class RecipeRepositoryTests {
 

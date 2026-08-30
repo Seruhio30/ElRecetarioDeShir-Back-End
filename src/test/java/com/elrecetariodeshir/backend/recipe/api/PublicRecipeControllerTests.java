@@ -1,5 +1,7 @@
 package com.elrecetariodeshir.backend.recipe.api;
 
+import com.elrecetariodeshir.backend.testsupport.DatabaseIntegrationTest;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -12,7 +14,6 @@ import java.time.Instant;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,7 @@ import com.elrecetariodeshir.backend.recipe.RecipeStatus;
 import com.elrecetariodeshir.backend.recipe.RecipeStep;
 import com.elrecetariodeshir.backend.recipe.RecipeType;
 
-@SpringBootTest(properties = "app.media.storage.root=${java.io.tmpdir}/elrecetariodeshir-public-api-test-media")
+@DatabaseIntegrationTest
 @AutoConfigureMockMvc
 @Transactional
 class PublicRecipeControllerTests {

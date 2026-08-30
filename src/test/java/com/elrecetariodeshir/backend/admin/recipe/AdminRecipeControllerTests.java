@@ -1,5 +1,7 @@
 package com.elrecetariodeshir.backend.admin.recipe;
 
+import com.elrecetariodeshir.backend.testsupport.DatabaseIntegrationTest;
+
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.not;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -14,7 +16,6 @@ import java.time.Instant;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,7 +30,7 @@ import com.elrecetariodeshir.backend.recipe.RecipeStatus;
 import com.elrecetariodeshir.backend.recipe.RecipeStep;
 import com.elrecetariodeshir.backend.recipe.RecipeType;
 
-@SpringBootTest(properties = "app.media.storage.root=${java.io.tmpdir}/elrecetariodeshir-admin-recipe-test-media")
+@DatabaseIntegrationTest
 @AutoConfigureMockMvc
 @Transactional
 class AdminRecipeControllerTests {
