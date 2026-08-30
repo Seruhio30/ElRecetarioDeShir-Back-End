@@ -17,7 +17,6 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
@@ -34,12 +33,9 @@ import com.elrecetariodeshir.backend.recipe.RecipeRepository;
 import com.elrecetariodeshir.backend.recipe.RecipeStatus;
 import com.elrecetariodeshir.backend.recipe.RecipeStep;
 import com.elrecetariodeshir.backend.recipe.RecipeType;
+import com.elrecetariodeshir.backend.testsupport.DatabaseIntegrationTest;
 
-@SpringBootTest(properties = {
-        "app.media.storage.root=${java.io.tmpdir}/elrecetariodeshir-admin-media-test",
-        "spring.servlet.multipart.max-file-size=5MB",
-        "spring.servlet.multipart.max-request-size=6MB"
-})
+@DatabaseIntegrationTest
 @AutoConfigureMockMvc
 @Transactional
 class AdminRecipeImageControllerTests {
