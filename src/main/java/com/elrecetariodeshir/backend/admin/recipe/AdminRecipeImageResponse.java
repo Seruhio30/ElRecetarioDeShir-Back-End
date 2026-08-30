@@ -4,6 +4,7 @@ import java.time.Instant;
 
 public record AdminRecipeImageResponse(
         Long id,
+        String url,
         String originalFilename,
         String mediaType,
         String altText,

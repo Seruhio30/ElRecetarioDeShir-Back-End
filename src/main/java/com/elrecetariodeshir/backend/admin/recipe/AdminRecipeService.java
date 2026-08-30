@@ -383,6 +383,8 @@ public class AdminRecipeService {
                                 image -> image.getPosition()))
                         .map(image -> new AdminRecipeImageResponse(
                                 image.getId(),
+                                "/api/admin/recipes/" + recipe.getId()
+                                        + "/images/" + image.getId() + "/content",
                                 image.getOriginalFilename(),
                                 image.getMediaType(),
                                 image.getAltText(),
