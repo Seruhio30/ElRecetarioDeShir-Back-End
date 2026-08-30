@@ -1,5 +1,7 @@
 package com.elrecetariodeshir.backend.legacyimport;
 
+import com.elrecetariodeshir.backend.testsupport.DatabaseIntegrationTest;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -14,11 +16,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.elrecetariodeshir.backend.media.storage.MediaStorageProperties;
 import com.elrecetariodeshir.backend.recipe.Recipe;
 import com.elrecetariodeshir.backend.recipe.RecipeCategory;
 import com.elrecetariodeshir.backend.recipe.RecipeDifficulty;
@@ -26,15 +28,9 @@ import com.elrecetariodeshir.backend.recipe.RecipeRepository;
 import com.elrecetariodeshir.backend.recipe.RecipeStatus;
 import com.elrecetariodeshir.backend.recipe.RecipeType;
 
-@SpringBootTest(properties = {
-        "app.media.storage.root=${java.io.tmpdir}/elrecetariodeshir-import-service-tests"
-})
+@DatabaseIntegrationTest
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 class LegacyRecipeImportServiceTests {
-
-    private static final Path STORAGE_ROOT = Path.of(
-            System.getProperty("java.io.tmpdir"),
-            "elrecetariodeshir-import-service-tests");
 
     @TempDir
     Path tempDirectory;
@@ -47,6 +43,9 @@ class LegacyRecipeImportServiceTests {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private MediaStorageProperties mediaStorageProperties;
 
     private Path jsonPath;
     private Path assetsRoot;
@@ -242,23 +241,29 @@ class LegacyRecipeImportServiceTests {
     }
 
     private long storageFileCount() throws IOException {
-        if (!Files.exists(STORAGE_ROOT)) {
+        if (!Files.exists(storageRoot())) {
             return 0;
         }
 
-        try (var files = Files.list(STORAGE_ROOT)) {
+        try (var files = Files.list(storageRoot())) {
             return files.filter(Files::isRegularFile).count();
         }
     }
 
+    private Path storageRoot() {
+        return Path.of(mediaStorageProperties.getRoot())
+                .toAbsolutePath()
+                .normalize();
+    }
+
     private void cleanStorage() throws IOException {
-        if (!Files.exists(STORAGE_ROOT)) {
+        if (!Files.exists(storageRoot())) {
             return;
         }
 
-        try (var paths = Files.walk(STORAGE_ROOT)) {
+        try (var paths = Files.walk(storageRoot())) {
             for (Path path : paths.sorted(Comparator.reverseOrder()).toList()) {
-                if (!path.equals(STORAGE_ROOT)) {
+                if (!path.equals(storageRoot())) {
                     Files.deleteIfExists(path);
                 }
             }
