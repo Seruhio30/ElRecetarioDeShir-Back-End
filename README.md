@@ -45,7 +45,15 @@ Con las variables de entorno configuradas:
 
     ./mvnw spring-boot:run
 
-Para ejecutar las pruebas de integración contra MySQL:
+Para ejecutar las pruebas de integración contra MySQL se utiliza una base separada llamada `elrecetariodeshir_test`.
+
+Variables requeridas para tests:
+
+- `TEST_SPRING_DATASOURCE_URL`
+- `TEST_SPRING_DATASOURCE_USERNAME`
+- `TEST_SPRING_DATASOURCE_PASSWORD`
+
+La URL de test debe apuntar exactamente a `elrecetariodeshir_test`. Los tests de integración activan el profile `test`, utilizan storage temporal separado y abortan antes de ejecutarse si la datasource configurada apunta a `elrecetariodeshir_db`.
 
     ./mvnw test
 

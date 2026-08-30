@@ -1,5 +1,7 @@
 package com.elrecetariodeshir.backend.legacyimport;
 
+import com.elrecetariodeshir.backend.testsupport.DatabaseIntegrationTest;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -16,7 +18,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -28,9 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.elrecetariodeshir.backend.media.storage.MediaStorageService;
 import com.elrecetariodeshir.backend.recipe.RecipeRepository;
 
-@SpringBootTest(properties = {
-        "app.media.storage.root=${java.io.tmpdir}/elrecetariodeshir-unused-storage"
-})
+@DatabaseIntegrationTest
 @Import(LegacyRecipeImportRollbackTests.RollbackTestConfiguration.class)
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 class LegacyRecipeImportRollbackTests {
