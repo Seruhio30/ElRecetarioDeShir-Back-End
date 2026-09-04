@@ -1,5 +1,6 @@
 package com.elrecetariodeshir.backend.recipe;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,6 +55,22 @@ public class Recipe {
 
     @Column
     private Integer time;
+
+    @Column(name = "yield_quantity", precision = 12, scale = 3)
+    private BigDecimal yieldQuantity;
+
+    @Column(name = "yield_min", precision = 12, scale = 3)
+    private BigDecimal yieldMin;
+
+    @Column(name = "yield_max", precision = 12, scale = 3)
+    private BigDecimal yieldMax;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "yield_unit", length = 20)
+    private RecipeYieldUnit yieldUnit;
+
+    @Column(name = "yield_display", length = 160)
+    private String yieldDisplay;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
@@ -215,6 +232,26 @@ public class Recipe {
         return time;
     }
 
+    public BigDecimal getYieldQuantity() {
+        return yieldQuantity;
+    }
+
+    public BigDecimal getYieldMin() {
+        return yieldMin;
+    }
+
+    public BigDecimal getYieldMax() {
+        return yieldMax;
+    }
+
+    public RecipeYieldUnit getYieldUnit() {
+        return yieldUnit;
+    }
+
+    public String getYieldDisplay() {
+        return yieldDisplay;
+    }
+
     public RecipeStatus getStatus() {
         return status;
     }
@@ -273,6 +310,26 @@ public class Recipe {
 
     public void setTime(Integer time) {
         this.time = time;
+    }
+
+    public void setYieldQuantity(BigDecimal yieldQuantity) {
+        this.yieldQuantity = yieldQuantity;
+    }
+
+    public void setYieldMin(BigDecimal yieldMin) {
+        this.yieldMin = yieldMin;
+    }
+
+    public void setYieldMax(BigDecimal yieldMax) {
+        this.yieldMax = yieldMax;
+    }
+
+    public void setYieldUnit(RecipeYieldUnit yieldUnit) {
+        this.yieldUnit = yieldUnit;
+    }
+
+    public void setYieldDisplay(String yieldDisplay) {
+        this.yieldDisplay = yieldDisplay;
     }
 
     public void setStatus(RecipeStatus status) {

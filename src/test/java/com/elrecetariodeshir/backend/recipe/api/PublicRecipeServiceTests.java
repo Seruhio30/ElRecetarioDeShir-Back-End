@@ -7,6 +7,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.ByteArrayInputStream;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +28,7 @@ import com.elrecetariodeshir.backend.recipe.RecipeRepository;
 import com.elrecetariodeshir.backend.recipe.RecipeStatus;
 import com.elrecetariodeshir.backend.recipe.RecipeStep;
 import com.elrecetariodeshir.backend.recipe.RecipeType;
+import com.elrecetariodeshir.backend.recipe.RecipeYieldUnit;
 
 class PublicRecipeServiceTests {
 
@@ -95,6 +97,10 @@ class PublicRecipeServiceTests {
     void mapsDetailWithOrderedChildren() {
         Recipe recipe = publishedRecipe("test-api-paella", "Paella");
 
+        recipe.setYieldQuantity(new BigDecimal("1"));
+        recipe.setYieldUnit(RecipeYieldUnit.LITER);
+        recipe.setYieldDisplay("1 litro");
+
         recipe.addIngredient(new RecipeIngredient(0, "Arroz"));
         recipe.addIngredient(new RecipeIngredient(1, "Pollo"));
         recipe.addStep(new RecipeStep(0, "Preparar ingredientes."));
@@ -112,6 +118,15 @@ class PublicRecipeServiceTests {
 
         RecipeDetailResponse response =
                 service.getRecipeBySlug("test-api-paella");
+
+        assertThat(response.yieldQuantity())
+                .isEqualByComparingTo("1");
+        assertThat(response.yieldMin()).isNull();
+        assertThat(response.yieldMax()).isNull();
+        assertThat(response.yieldUnit())
+                .isEqualTo(RecipeYieldUnit.LITER);
+        assertThat(response.yieldDisplay())
+                .isEqualTo("1 litro");
 
         assertThat(response.ingredients())
                 .extracting(RecipeIngredientResponse::position)
