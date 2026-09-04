@@ -99,6 +99,131 @@ class AdminRecipeControllerTests {
     }
 
     @Test
+    void createsDraftWithFlexibleRecipeYield() throws Exception {
+        mockMvc.perform(post("/api/admin/recipes")
+                        .with(user("sergio").authorities(() -> "ADMIN"))
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "name": "Yield Create Fixture",
+                                  "cuisine": "Test",
+                                  "category": "NATIONAL",
+                                  "countryCode": "CR",
+                                  "type": "MAIN_COURSE",
+                                  "difficulty": "EASY",
+                                  "time": 30,
+                                  "yieldQuantity": 18,
+                                  "yieldUnit": "UNIT",
+                                  "yieldDisplay": "18 u",
+                                  "ingredients": [
+                                    {"position": 0, "text": "Ingrediente"}
+                                  ],
+                                  "steps": [
+                                    {"position": 0, "instruction": "Paso"}
+                                  ]
+                                }
+                                """))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.yieldQuantity").value(18))
+                .andExpect(jsonPath("$.yieldMin").doesNotExist())
+                .andExpect(jsonPath("$.yieldMax").doesNotExist())
+                .andExpect(jsonPath("$.yieldUnit").value("UNIT"))
+                .andExpect(jsonPath("$.yieldDisplay").value("18 u"));
+    }
+
+    @Test
+    void updatesAndRejectsInvalidRecipeYield() throws Exception {
+        Recipe recipe = persistRecipe(
+                "yield-update-fixture",
+                "Yield Update Fixture",
+                RecipeStatus.DRAFT);
+
+        mockMvc.perform(patch("/api/admin/recipes/{id}", recipe.getId())
+                        .with(user("sergio").authorities(() -> "ADMIN"))
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "name": "Yield Update Fixture",
+                                  "cuisine": "Test",
+                                  "category": "NATIONAL",
+                                  "countryCode": "CR",
+                                  "type": "MAIN_COURSE",
+                                  "difficulty": "EASY",
+                                  "time": 30,
+                                  "yieldMin": 8,
+                                  "yieldMax": 12,
+                                  "yieldUnit": "SERVING",
+                                  "yieldDisplay": "8-12 porciones",
+                                  "ingredients": [
+                                    {"position": 0, "text": "Ingrediente"}
+                                  ],
+                                  "steps": [
+                                    {"position": 0, "instruction": "Paso"}
+                                  ]
+                                }
+                                """))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.yieldQuantity").doesNotExist())
+                .andExpect(jsonPath("$.yieldMin").value(8))
+                .andExpect(jsonPath("$.yieldMax").value(12))
+                .andExpect(jsonPath("$.yieldUnit").value("SERVING"))
+                .andExpect(jsonPath("$.yieldDisplay").value("8-12 porciones"));
+
+        mockMvc.perform(patch("/api/admin/recipes/{id}", recipe.getId())
+                        .with(user("sergio").authorities(() -> "ADMIN"))
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "name": "Invalid Negative Yield",
+                                  "cuisine": "Test",
+                                  "category": "NATIONAL",
+                                  "countryCode": "CR",
+                                  "type": "MAIN_COURSE",
+                                  "difficulty": "EASY",
+                                  "time": 30,
+                                  "yieldQuantity": -1,
+                                  "ingredients": [
+                                    {"position": 0, "text": "Ingrediente"}
+                                  ],
+                                  "steps": [
+                                    {"position": 0, "instruction": "Paso"}
+                                  ]
+                                }
+                                """))
+                .andExpect(status().isBadRequest());
+
+        mockMvc.perform(patch("/api/admin/recipes/{id}", recipe.getId())
+                        .with(user("sergio").authorities(() -> "ADMIN"))
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "name": "Invalid Yield Range",
+                                  "cuisine": "Test",
+                                  "category": "NATIONAL",
+                                  "countryCode": "CR",
+                                  "type": "MAIN_COURSE",
+                                  "difficulty": "EASY",
+                                  "time": 30,
+                                  "yieldMin": 12,
+                                  "yieldMax": 8,
+                                  "yieldUnit": "SERVING",
+                                  "ingredients": [
+                                    {"position": 0, "text": "Ingrediente"}
+                                  ],
+                                  "steps": [
+                                    {"position": 0, "instruction": "Paso"}
+                                  ]
+                                }
+                                """))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value("BAD_REQUEST"));
+    }
+
+    @Test
     void generatesUniqueSlugWithoutAllowingClientSlugManipulation() throws Exception {
         persistRecipe(
                 "receta-especial",

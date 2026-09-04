@@ -1,5 +1,6 @@
 package com.elrecetariodeshir.backend.admin.recipe;
 
+import java.math.BigDecimal;
 import java.text.Normalizer;
 import java.time.Instant;
 import java.util.Comparator;
@@ -80,6 +81,7 @@ public class AdminRecipeService {
             AdminRecipeWriteRequest request) {
 
         validateCollectionPositions(request);
+        validateYield(request);
 
         String slug = generateUniqueSlug(request.name());
 
@@ -93,6 +95,12 @@ public class AdminRecipeService {
                 request.difficulty(),
                 request.time(),
                 RecipeStatus.DRAFT);
+
+        recipe.setYieldQuantity(request.yieldQuantity());
+        recipe.setYieldMin(request.yieldMin());
+        recipe.setYieldMax(request.yieldMax());
+        recipe.setYieldUnit(request.yieldUnit());
+        recipe.setYieldDisplay(normalizeOptional(request.yieldDisplay()));
 
         recipe.replaceIngredients(toIngredients(request));
         recipe.replaceSteps(toSteps(request));
@@ -108,6 +116,7 @@ public class AdminRecipeService {
             AdminRecipeWriteRequest request) {
 
         validateCollectionPositions(request);
+        validateYield(request);
 
         Recipe recipe = findRecipe(id);
 
@@ -118,6 +127,11 @@ public class AdminRecipeService {
         recipe.setType(request.type());
         recipe.setDifficulty(request.difficulty());
         recipe.setTime(request.time());
+        recipe.setYieldQuantity(request.yieldQuantity());
+        recipe.setYieldMin(request.yieldMin());
+        recipe.setYieldMax(request.yieldMax());
+        recipe.setYieldUnit(request.yieldUnit());
+        recipe.setYieldDisplay(normalizeOptional(request.yieldDisplay()));
 
         recipe.clearIngredients();
         recipe.clearSteps();
@@ -206,6 +220,26 @@ public class AdminRecipeService {
             throw new AdminRecipeValidationException(
                     "Recipe is incomplete and cannot be published.");
         }
+    }
+
+    private void validateYield(AdminRecipeWriteRequest request) {
+        if (isNegative(request.yieldQuantity())
+                || isNegative(request.yieldMin())
+                || isNegative(request.yieldMax())) {
+            throw new AdminRecipeValidationException(
+                    "Recipe yield values cannot be negative.");
+        }
+
+        if (request.yieldMin() != null
+                && request.yieldMax() != null
+                && request.yieldMin().compareTo(request.yieldMax()) > 0) {
+            throw new AdminRecipeValidationException(
+                    "Recipe yield minimum cannot exceed maximum.");
+        }
+    }
+
+    private boolean isNegative(BigDecimal value) {
+        return value != null && value.signum() < 0;
     }
 
     private void validateCollectionPositions(AdminRecipeWriteRequest request) {
@@ -363,6 +397,11 @@ public class AdminRecipeService {
                 recipe.getType(),
                 recipe.getDifficulty(),
                 recipe.getTime(),
+                recipe.getYieldQuantity(),
+                recipe.getYieldMin(),
+                recipe.getYieldMax(),
+                recipe.getYieldUnit(),
+                recipe.getYieldDisplay(),
                 recipe.getStatus(),
                 recipe.getIngredients().stream()
                         .sorted(Comparator.comparingInt(

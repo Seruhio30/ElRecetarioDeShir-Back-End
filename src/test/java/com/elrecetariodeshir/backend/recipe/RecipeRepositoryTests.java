@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.within;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 
 import org.junit.jupiter.api.Test;
@@ -218,6 +219,94 @@ class RecipeRepositoryTests {
         assertThat(restored.getStatus()).isEqualTo(RecipeStatus.DRAFT);
         assertThat(restored.getPublishedAt()).isNotNull();
         assertThat(restored.getArchivedAt()).isNotNull();
+    }
+
+    @Test
+    void persistsSimpleRecipeYield() {
+        Recipe recipe = createRecipe("yield-simple");
+
+        recipe.setYieldQuantity(new BigDecimal("12"));
+        recipe.setYieldUnit(RecipeYieldUnit.SERVING);
+        recipe.setYieldDisplay("12 porciones");
+
+        recipeRepository.saveAndFlush(recipe);
+        Long recipeId = recipe.getId();
+
+        entityManager.clear();
+
+        Recipe persisted = recipeRepository.findById(recipeId).orElseThrow();
+
+        assertThat(persisted.getYieldQuantity())
+                .isEqualByComparingTo("12.000");
+        assertThat(persisted.getYieldMin()).isNull();
+        assertThat(persisted.getYieldMax()).isNull();
+        assertThat(persisted.getYieldUnit())
+                .isEqualTo(RecipeYieldUnit.SERVING);
+        assertThat(persisted.getYieldDisplay())
+                .isEqualTo("12 porciones");
+    }
+
+    @Test
+    void persistsRecipeYieldRangeAndUnit() {
+        Recipe recipe = createRecipe("yield-range");
+
+        recipe.setYieldMin(new BigDecimal("8"));
+        recipe.setYieldMax(new BigDecimal("12"));
+        recipe.setYieldUnit(RecipeYieldUnit.SERVING);
+        recipe.setYieldDisplay("8-12");
+
+        recipeRepository.saveAndFlush(recipe);
+        Long recipeId = recipe.getId();
+
+        entityManager.clear();
+
+        Recipe persisted = recipeRepository.findById(recipeId).orElseThrow();
+
+        assertThat(persisted.getYieldQuantity()).isNull();
+        assertThat(persisted.getYieldMin())
+                .isEqualByComparingTo("8.000");
+        assertThat(persisted.getYieldMax())
+                .isEqualByComparingTo("12.000");
+        assertThat(persisted.getYieldUnit())
+                .isEqualTo(RecipeYieldUnit.SERVING);
+        assertThat(persisted.getYieldDisplay())
+                .isEqualTo("8-12");
+    }
+
+    @Test
+    void recipeWithoutYieldRemainsValid() {
+        Recipe recipe = createRecipe("yield-optional");
+
+        recipeRepository.saveAndFlush(recipe);
+        Long recipeId = recipe.getId();
+
+        entityManager.clear();
+
+        Recipe persisted = recipeRepository.findById(recipeId).orElseThrow();
+
+        assertThat(persisted.getYieldQuantity()).isNull();
+        assertThat(persisted.getYieldMin()).isNull();
+        assertThat(persisted.getYieldMax()).isNull();
+        assertThat(persisted.getYieldUnit()).isNull();
+        assertThat(persisted.getYieldDisplay()).isNull();
+    }
+
+    @Test
+    void rejectsInvalidRecipeYieldValues() {
+        Recipe negative = createRecipe("yield-negative");
+        negative.setYieldQuantity(new BigDecimal("-1"));
+
+        assertThatThrownBy(() -> recipeRepository.saveAndFlush(negative))
+                .isInstanceOf(DataIntegrityViolationException.class);
+
+        entityManager.clear();
+
+        Recipe invalidRange = createRecipe("yield-invalid-range");
+        invalidRange.setYieldMin(new BigDecimal("12"));
+        invalidRange.setYieldMax(new BigDecimal("8"));
+
+        assertThatThrownBy(() -> recipeRepository.saveAndFlush(invalidRange))
+                .isInstanceOf(DataIntegrityViolationException.class);
     }
 
     @Test
