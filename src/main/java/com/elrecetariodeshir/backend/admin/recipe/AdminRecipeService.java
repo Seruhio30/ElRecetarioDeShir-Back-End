@@ -1,12 +1,10 @@
 package com.elrecetariodeshir.backend.admin.recipe;
 
 import java.math.BigDecimal;
-import java.text.Normalizer;
 import java.time.Instant;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.regex.Pattern;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +17,7 @@ import com.elrecetariodeshir.backend.recipe.Recipe;
 import com.elrecetariodeshir.backend.recipe.RecipeIngredient;
 import com.elrecetariodeshir.backend.recipe.RecipeRepository;
 import com.elrecetariodeshir.backend.recipe.RecipeSpecifications;
+import com.elrecetariodeshir.backend.recipe.RecipeSlugifier;
 import com.elrecetariodeshir.backend.recipe.RecipeStatus;
 import com.elrecetariodeshir.backend.recipe.RecipeStep;
 
@@ -27,7 +26,6 @@ public class AdminRecipeService {
 
     private static final int DEFAULT_SIZE = 20;
     private static final int MAX_SIZE = 100;
-    private static final Pattern NON_SLUG = Pattern.compile("[^a-z0-9]+");
 
     private final RecipeRepository recipeRepository;
 
@@ -329,7 +327,7 @@ public class AdminRecipeService {
     }
 
     private String generateUniqueSlug(String name) {
-        String base = slugify(name);
+        String base = RecipeSlugifier.slugify(normalizeRequired(name));
 
         if (base.isBlank()) {
             throw new AdminRecipeValidationException(
@@ -345,19 +343,6 @@ public class AdminRecipeService {
         }
 
         return candidate;
-    }
-
-    private String slugify(String value) {
-        String normalized = Normalizer.normalize(
-                normalizeRequired(value),
-                Normalizer.Form.NFD);
-
-        String withoutMarks = normalized.replaceAll("\\p{M}+", "");
-        String lowercase = withoutMarks.toLowerCase(Locale.ROOT);
-
-        return NON_SLUG.matcher(lowercase)
-                .replaceAll("-")
-                .replaceAll("^-+|-+$", "");
     }
 
     private String normalizeRequired(String value) {

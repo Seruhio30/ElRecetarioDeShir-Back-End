@@ -127,4 +127,18 @@ Para peticiones Admin que modifican estado, el frontend debe obtener primero el 
 
 ## Siguiente bloque
 
-Frontend Admin.
+Excel recipe import, después de cerrar y revisar este preflight.
+
+## Excel recipe preflight
+
+The Excel recipe preflight reads the canonical recipe workbook without persisting data.
+
+For local validation, configure:
+
+RECIPE_EXCEL_PATH=/mnt/c/Users/sherr/Downloads/Recetas.xlsx
+
+The generated report is written to:
+
+target/recipe-preflight.json
+
+The target directory is ignored by Git.
