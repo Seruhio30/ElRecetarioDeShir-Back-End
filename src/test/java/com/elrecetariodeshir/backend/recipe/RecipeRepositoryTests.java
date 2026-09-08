@@ -309,6 +309,141 @@ class RecipeRepositoryTests {
                 .isInstanceOf(DataIntegrityViolationException.class);
     }
 
+
+    @Test
+    void persistsStructuredIngredientWithSimpleQuantityDecimalRangeUnitNotesAndDisplayText() {
+        Recipe recipe = createRecipe("structured-ingredient");
+
+        recipe.addIngredient(new RecipeIngredient(
+                2,
+                "Aceite de oliva",
+                new BigDecimal("1.5"),
+                null,
+                RecipeIngredientUnit.TABLESPOON,
+                "para terminar",
+                "1.5 cdas de aceite de oliva para terminar"));
+
+        recipe.addIngredient(new RecipeIngredient(
+                0,
+                "Huevos",
+                new BigDecimal("3"),
+                new BigDecimal("4"),
+                RecipeIngredientUnit.UNIT,
+                "grandes",
+                "3-4 huevos grandes"));
+
+        recipe.addIngredient(new RecipeIngredient(
+                1,
+                "Harina",
+                new BigDecimal("250"),
+                null,
+                RecipeIngredientUnit.GRAM,
+                null,
+                "250 gr de harina"));
+
+        recipeRepository.saveAndFlush(recipe);
+        Long recipeId = recipe.getId();
+
+        entityManager.clear();
+
+        Recipe persisted = recipeRepository.findById(recipeId).orElseThrow();
+
+        assertThat(persisted.getIngredients())
+                .extracting(RecipeIngredient::getPosition)
+                .containsExactly(0, 1, 2);
+
+        RecipeIngredient range = persisted.getIngredients().get(0);
+        assertThat(range.getIngredientName()).isEqualTo("Huevos");
+        assertThat(range.getQuantity()).isEqualByComparingTo("3");
+        assertThat(range.getQuantityMax()).isEqualByComparingTo("4");
+        assertThat(range.getUnit()).isEqualTo(RecipeIngredientUnit.UNIT);
+        assertThat(range.getNotes()).isEqualTo("grandes");
+        assertThat(range.getDisplayText()).isEqualTo("3-4 huevos grandes");
+        assertThat(range.getText()).isEqualTo("3-4 huevos grandes");
+
+        RecipeIngredient simple = persisted.getIngredients().get(1);
+        assertThat(simple.getQuantity()).isEqualByComparingTo("250");
+        assertThat(simple.getQuantityMax()).isNull();
+        assertThat(simple.getUnit()).isEqualTo(RecipeIngredientUnit.GRAM);
+
+        RecipeIngredient decimal = persisted.getIngredients().get(2);
+        assertThat(decimal.getQuantity()).isEqualByComparingTo("1.5");
+        assertThat(decimal.getNotes()).isEqualTo("para terminar");
+    }
+
+    @Test
+    void keepsLegacyIngredientWithoutStructuredFieldsValid() {
+        Recipe recipe = createRecipe("legacy-ingredient");
+
+        recipe.addIngredient(new RecipeIngredient(
+                0,
+                "Culantro al gusto"));
+
+        recipeRepository.saveAndFlush(recipe);
+        Long recipeId = recipe.getId();
+
+        entityManager.clear();
+
+        RecipeIngredient persisted = recipeRepository.findById(recipeId)
+                .orElseThrow()
+                .getIngredients()
+                .getFirst();
+
+        assertThat(persisted.getDisplayText()).isEqualTo("Culantro al gusto");
+        assertThat(persisted.getText()).isEqualTo("Culantro al gusto");
+        assertThat(persisted.getIngredientName()).isNull();
+        assertThat(persisted.getQuantity()).isNull();
+        assertThat(persisted.getQuantityMax()).isNull();
+        assertThat(persisted.getUnit()).isNull();
+        assertThat(persisted.getNotes()).isNull();
+    }
+
+    @Test
+    void rejectsNegativeIngredientQuantitiesAndInvalidRange() {
+        Recipe negativeQuantity = createRecipe("negative-ingredient-quantity");
+        negativeQuantity.addIngredient(new RecipeIngredient(
+                0,
+                "Azucar",
+                new BigDecimal("-1"),
+                null,
+                RecipeIngredientUnit.GRAM,
+                null,
+                "-1 gr de azucar"));
+
+        assertThatThrownBy(() -> recipeRepository.saveAndFlush(negativeQuantity))
+                .isInstanceOf(DataIntegrityViolationException.class);
+
+        entityManager.clear();
+
+        Recipe negativeQuantityMax = createRecipe("negative-ingredient-quantity-max");
+        negativeQuantityMax.addIngredient(new RecipeIngredient(
+                0,
+                "Azucar",
+                new BigDecimal("1"),
+                new BigDecimal("-2"),
+                RecipeIngredientUnit.GRAM,
+                null,
+                "1--2 gr de azucar"));
+
+        assertThatThrownBy(() -> recipeRepository.saveAndFlush(negativeQuantityMax))
+                .isInstanceOf(DataIntegrityViolationException.class);
+
+        entityManager.clear();
+
+        Recipe invalidRange = createRecipe("invalid-ingredient-range");
+        invalidRange.addIngredient(new RecipeIngredient(
+                0,
+                "Huevos",
+                new BigDecimal("4"),
+                new BigDecimal("3"),
+                RecipeIngredientUnit.UNIT,
+                null,
+                "4-3 huevos"));
+
+        assertThatThrownBy(() -> recipeRepository.saveAndFlush(invalidRange))
+                .isInstanceOf(DataIntegrityViolationException.class);
+    }
+
     @Test
     void rejectsDuplicateRecipeSlug() {
         Recipe first = createRecipe("olla-de-carne");

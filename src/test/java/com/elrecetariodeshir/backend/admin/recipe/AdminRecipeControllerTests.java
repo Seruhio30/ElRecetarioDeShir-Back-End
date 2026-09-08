@@ -246,6 +246,174 @@ class AdminRecipeControllerTests {
     }
 
     @Test
+    void createsRecipeWithStructuredIngredientAndKeepsLegacyTextCompatibility() throws Exception {
+        mockMvc.perform(post("/api/admin/recipes")
+                        .with(user("sergio").authorities(() -> "ADMIN"))
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "name": "Structured Ingredient Create",
+                                  "cuisine": "Test",
+                                  "category": "NATIONAL",
+                                  "countryCode": "CR",
+                                  "type": "MAIN_COURSE",
+                                  "difficulty": "EASY",
+                                  "time": 30,
+                                  "ingredients": [
+                                    {
+                                      "position": 0,
+                                      "ingredientName": "Huevos",
+                                      "quantity": 3,
+                                      "quantityMax": 4,
+                                      "unit": "UNIT",
+                                      "notes": "grandes",
+                                      "displayText": "3-4 huevos grandes"
+                                    },
+                                    {
+                                      "position": 1,
+                                      "text": "Culantro al gusto"
+                                    }
+                                  ],
+                                  "steps": [
+                                    {"position": 0, "instruction": "Paso"}
+                                  ]
+                                }
+                                """))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.ingredients[0].ingredientName")
+                        .value("Huevos"))
+                .andExpect(jsonPath("$.ingredients[0].quantity")
+                        .value(3))
+                .andExpect(jsonPath("$.ingredients[0].quantityMax")
+                        .value(4))
+                .andExpect(jsonPath("$.ingredients[0].unit")
+                        .value("UNIT"))
+                .andExpect(jsonPath("$.ingredients[0].notes")
+                        .value("grandes"))
+                .andExpect(jsonPath("$.ingredients[0].displayText")
+                        .value("3-4 huevos grandes"))
+                .andExpect(jsonPath("$.ingredients[0].text")
+                        .value("3-4 huevos grandes"))
+                .andExpect(jsonPath("$.ingredients[1].displayText")
+                        .value("Culantro al gusto"))
+                .andExpect(jsonPath("$.ingredients[1].text")
+                        .value("Culantro al gusto"));
+    }
+
+    @Test
+    void updatesRecipeWithStructuredIngredientAndRejectsInvalidQuantityRange() throws Exception {
+        Recipe recipe = persistRecipe(
+                "structured-ingredient-update",
+                "Structured Ingredient Update",
+                RecipeStatus.DRAFT);
+
+        mockMvc.perform(patch("/api/admin/recipes/{id}", recipe.getId())
+                        .with(user("sergio").authorities(() -> "ADMIN"))
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "name": "Structured Ingredient Update",
+                                  "cuisine": "Test",
+                                  "category": "NATIONAL",
+                                  "countryCode": "CR",
+                                  "type": "MAIN_COURSE",
+                                  "difficulty": "EASY",
+                                  "time": 30,
+                                  "ingredients": [
+                                    {
+                                      "position": 0,
+                                      "ingredientName": "Aceite",
+                                      "quantity": 1.5,
+                                      "unit": "TABLESPOON",
+                                      "notes": "para terminar",
+                                      "displayText": "1.5 cdas de aceite para terminar"
+                                    }
+                                  ],
+                                  "steps": [
+                                    {"position": 0, "instruction": "Paso"}
+                                  ]
+                                }
+                                """))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.ingredients[0].ingredientName")
+                        .value("Aceite"))
+                .andExpect(jsonPath("$.ingredients[0].quantity")
+                        .value(1.5))
+                .andExpect(jsonPath("$.ingredients[0].unit")
+                        .value("TABLESPOON"))
+                .andExpect(jsonPath("$.ingredients[0].notes")
+                        .value("para terminar"))
+                .andExpect(jsonPath("$.ingredients[0].displayText")
+                        .value("1.5 cdas de aceite para terminar"));
+
+        mockMvc.perform(patch("/api/admin/recipes/{id}", recipe.getId())
+                        .with(user("sergio").authorities(() -> "ADMIN"))
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "name": "Structured Ingredient Update",
+                                  "cuisine": "Test",
+                                  "category": "NATIONAL",
+                                  "countryCode": "CR",
+                                  "type": "MAIN_COURSE",
+                                  "difficulty": "EASY",
+                                  "time": 30,
+                                  "ingredients": [
+                                    {
+                                      "position": 0,
+                                      "quantity": 4,
+                                      "quantityMax": 3,
+                                      "unit": "UNIT",
+                                      "displayText": "4-3 huevos"
+                                    }
+                                  ],
+                                  "steps": [
+                                    {"position": 0, "instruction": "Paso"}
+                                  ]
+                                }
+                                """))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value("BAD_REQUEST"));
+    }
+
+    @Test
+    void rejectsInvalidIngredientUnitAsBadRequest() throws Exception {
+        mockMvc.perform(post("/api/admin/recipes")
+                        .with(user("sergio").authorities(() -> "ADMIN"))
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                  "name": "Invalid Ingredient Unit",
+                                  "cuisine": "Test",
+                                  "category": "NATIONAL",
+                                  "countryCode": "CR",
+                                  "type": "MAIN_COURSE",
+                                  "difficulty": "EASY",
+                                  "time": 30,
+                                  "ingredients": [
+                                    {
+                                      "position": 0,
+                                      "quantity": 1,
+                                      "unit": "SPOONISH",
+                                      "displayText": "1 spoonish ingrediente"
+                                    }
+                                  ],
+                                  "steps": [
+                                    {"position": 0, "instruction": "Paso"}
+                                  ]
+                                }
+                                """))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.message")
+                        .value("Invalid admin recipe request."));
+    }
+
+    @Test
     void editsRecipeButKeepsSlugStableAfterRename() throws Exception {
         Recipe recipe = persistRecipe(
                 "stable-slug",

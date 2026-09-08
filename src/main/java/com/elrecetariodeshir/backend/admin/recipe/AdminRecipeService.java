@@ -82,6 +82,7 @@ public class AdminRecipeService {
 
         validateCollectionPositions(request);
         validateYield(request);
+        validateIngredients(request);
 
         String slug = generateUniqueSlug(request.name());
 
@@ -117,6 +118,7 @@ public class AdminRecipeService {
 
         validateCollectionPositions(request);
         validateYield(request);
+        validateIngredients(request);
 
         Recipe recipe = findRecipe(id);
 
@@ -242,6 +244,38 @@ public class AdminRecipeService {
         return value != null && value.signum() < 0;
     }
 
+    private void validateIngredients(AdminRecipeWriteRequest request) {
+        for (AdminRecipeIngredientRequest ingredient : request.ingredients()) {
+            if (resolveDisplayText(ingredient) == null) {
+                throw new AdminRecipeValidationException(
+                        "Ingredient display text is required.");
+            }
+
+            if (isNegative(ingredient.quantity())
+                    || isNegative(ingredient.quantityMax())) {
+                throw new AdminRecipeValidationException(
+                        "Ingredient quantities cannot be negative.");
+            }
+
+            if (ingredient.quantity() != null
+                    && ingredient.quantityMax() != null
+                    && ingredient.quantityMax().compareTo(ingredient.quantity()) < 0) {
+                throw new AdminRecipeValidationException(
+                        "Ingredient maximum quantity cannot be less than quantity.");
+            }
+        }
+    }
+
+    private String resolveDisplayText(AdminRecipeIngredientRequest ingredient) {
+        String displayText = normalizeOptional(ingredient.displayText());
+
+        if (displayText != null) {
+            return displayText;
+        }
+
+        return normalizeOptional(ingredient.text());
+    }
+
     private void validateCollectionPositions(AdminRecipeWriteRequest request) {
         validatePositions(
                 request.ingredients().stream()
@@ -273,7 +307,12 @@ public class AdminRecipeService {
                         AdminRecipeIngredientRequest::position))
                 .map(item -> new RecipeIngredient(
                         item.position(),
-                        item.text().trim()))
+                        normalizeOptional(item.ingredientName()),
+                        item.quantity(),
+                        item.quantityMax(),
+                        item.unit(),
+                        normalizeOptional(item.notes()),
+                        resolveDisplayText(item)))
                 .toList();
     }
 
@@ -408,7 +447,13 @@ public class AdminRecipeService {
                                 RecipeIngredient::getPosition))
                         .map(item -> new AdminRecipeIngredientResponse(
                                 item.getPosition(),
-                                item.getText()))
+                                item.getText(),
+                                item.getIngredientName(),
+                                item.getQuantity(),
+                                item.getQuantityMax(),
+                                item.getUnit(),
+                                item.getNotes(),
+                                item.getDisplayText()))
                         .toList(),
                 recipe.getSteps().stream()
                         .sorted(Comparator.comparingInt(

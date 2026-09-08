@@ -1,7 +1,11 @@
 package com.elrecetariodeshir.backend.recipe;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,15 +29,48 @@ public class RecipeIngredient {
     @Column(nullable = false)
     private int position;
 
-    @Column(nullable = false, length = 1000)
-    private String text;
+    @Column(name = "ingredient_name", length = 300)
+    private String ingredientName;
+
+    @Column(precision = 12, scale = 3)
+    private BigDecimal quantity;
+
+    @Column(name = "quantity_max", precision = 12, scale = 3)
+    private BigDecimal quantityMax;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private RecipeIngredientUnit unit;
+
+    @Column(length = 500)
+    private String notes;
+
+    @Column(name = "text", nullable = false, length = 1000)
+    private String displayText;
 
     protected RecipeIngredient() {
     }
 
-    public RecipeIngredient(int position, String text) {
+    public RecipeIngredient(int position, String displayText) {
         this.position = position;
-        this.text = text;
+        this.displayText = displayText;
+    }
+
+    public RecipeIngredient(
+            int position,
+            String ingredientName,
+            BigDecimal quantity,
+            BigDecimal quantityMax,
+            RecipeIngredientUnit unit,
+            String notes,
+            String displayText) {
+        this.position = position;
+        this.ingredientName = ingredientName;
+        this.quantity = quantity;
+        this.quantityMax = quantityMax;
+        this.unit = unit;
+        this.notes = notes;
+        this.displayText = displayText;
     }
 
     public Long getId() {
@@ -56,11 +93,59 @@ public class RecipeIngredient {
         this.position = position;
     }
 
+    public String getIngredientName() {
+        return ingredientName;
+    }
+
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
+    }
+
+    public BigDecimal getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(BigDecimal quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getQuantityMax() {
+        return quantityMax;
+    }
+
+    public void setQuantityMax(BigDecimal quantityMax) {
+        this.quantityMax = quantityMax;
+    }
+
+    public RecipeIngredientUnit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(RecipeIngredientUnit unit) {
+        this.unit = unit;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
+    public String getDisplayText() {
+        return displayText;
+    }
+
+    public void setDisplayText(String displayText) {
+        this.displayText = displayText;
+    }
+
     public String getText() {
-        return text;
+        return displayText;
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.displayText = text;
     }
 }
