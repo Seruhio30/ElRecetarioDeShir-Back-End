@@ -1,0 +1,495 @@
+{
+  "version": 1,
+  "recipes": {
+    "5. Brillo de tartas": {
+      "approved": true,
+      "name": "Brillo de Tartas",
+      "category": "INTERNATIONAL",
+      "type": "BASE",
+      "difficulty": "EASY",
+      "countryCode": "FR"
+    },
+    "6. Pasta quebrada": {
+      "approved": true,
+      "name": "Pasta Quebrada",
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "BASE",
+      "difficulty": "MEDIUM"
+    },
+    "10. Queque de cumpleaños": {
+      "approved": true,
+      "name": "Queque de Cumpleaños",
+      "category": "NATIONAL",
+      "countryCode": "CR",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM"
+    },
+    "17. Cheesecake": {
+      "approved": true,
+      "name": "New York cheesecake",
+      "category": "INTERNATIONAL",
+      "countryCode": "US",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM"
+    },
+    "22. Donas Berlinas": {
+      "approved": true,
+      "name": "Donas Berlinas",
+      "category": "INTERNATIONAL",
+      "countryCode": "DE",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM"
+    },
+    "23. Tres Leches de Coco": {
+      "approved": true,
+      "allowMissingImage": true,
+      "category": "INTERNATIONAL",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM",
+      "countryCode": "CR"
+    },
+    "35. Huevos Benedictinos": {
+      "approved": true,
+      "name": "Huevos Benedictinos",
+      "category": "INTERNATIONAL",
+      "countryCode": "US",
+      "type": "MAIN_COURSE",
+      "difficulty": "EASY",
+      "ingredients": [
+        {
+          "position": 4,
+          "expectedName": "-Salsa holandesa",
+          "quantity": 1,
+          "unit": "RECIPE",
+          "displayText": "1 receta Salsa holandesa",
+          "resolvedWarnings": [
+            "Ingredient unit is missing."
+          ]
+        }
+      ]
+    },
+    "36. Pollo en Salsa de Hongos": {
+      "approved": true,
+      "allowMissingImage": true,
+      "category": "INTERNATIONAL",
+      "type": "MAIN_COURSE",
+      "difficulty": "MEDIUM",
+      "countryCode": "CR"
+    },
+    "37. Paella Valenciana": {
+      "approved": true,
+      "ingredients": [
+        {
+          "position": 8,
+          "expectedName": "Agua",
+          "clearQuantity": true,
+          "clearUnit": true,
+          "displayText": "Agua",
+          "resolvedWarnings": [
+            "Unknown ingredient unit: la"
+          ]
+        }
+      ],
+      "category": "INTERNATIONAL",
+      "countryCode": "ES",
+      "type": "MAIN_COURSE",
+      "difficulty": "MEDIUM"
+    },
+    "38. Torta Española": {
+      "approved": true,
+      "countryCode": "ES",
+      "type": "MAIN_COURSE",
+      "category": "INTERNATIONAL",
+      "difficulty": "MEDIUM"
+    },
+    "40. Quiche Lorraine": {
+      "approved": true,
+      "countryCode": "FR",
+      "type": "MAIN_COURSE",
+      "category": "INTERNATIONAL",
+      "difficulty": "MEDIUM"
+    },
+    "41. Papa a la Huancaína": {
+      "approved": true,
+      "countryCode": "PE",
+      "type": "SIDE_DISH",
+      "category": "INTERNATIONAL",
+      "difficulty": "MEDIUM"
+    },
+    "42. Arroz Chaufa": {
+      "approved": true,
+      "countryCode": "PE",
+      "type": "MAIN_COURSE",
+      "category": "INTERNATIONAL",
+      "difficulty": "MEDIUM"
+    },
+    "43. Causa Limeña": {
+      "approved": true,
+      "countryCode": "PE",
+      "type": "SIDE_DISH",
+      "category": "INTERNATIONAL",
+      "difficulty": "MEDIUM"
+    },
+    "44. Totopos": {
+      "approved": true,
+      "countryCode": "MX",
+      "type": "SIDE_DISH",
+      "category": "INTERNATIONAL",
+      "difficulty": "MEDIUM"
+    },
+    "45. Salsa Roja": {
+      "approved": true,
+      "ingredients": [
+        {
+          "position": 3,
+          "expectedName": "Chile Guajillo",
+          "quantity": 1,
+          "unit": "UNIT",
+          "displayText": "1 Chile Guajillo",
+          "resolvedWarnings": [
+            "Unknown ingredient unit: una"
+          ]
+        }
+      ],
+      "category": "INTERNATIONAL",
+      "countryCode": "MX",
+      "type": "SAUCE",
+      "difficulty": "MEDIUM"
+    },
+    "47. Carne al Pastor": {
+      "approved": true,
+      "countryCode": "MX",
+      "type": "MAIN_COURSE",
+      "category": "INTERNATIONAL",
+      "difficulty": "MEDIUM"
+    },
+    "48. Chilaquiles": {
+      "approved": true,
+      "countryCode": "MX",
+      "type": "MAIN_COURSE",
+      "category": "INTERNATIONAL",
+      "difficulty": "EASY"
+    },
+    "49. Huaraches": {
+      "approved": true,
+      "countryCode": "MX",
+      "type": "MAIN_COURSE",
+      "category": "INTERNATIONAL",
+      "difficulty": "MEDIUM"
+    },
+    "53. Croissant de Mantequilla": {
+      "approved": true,
+      "ingredients": [
+        {
+          "position": 3,
+          "expectedName": "agua fria",
+          "clearQuantity": true,
+          "clearUnit": true,
+          "displayText": "Agua Fría",
+          "resolvedWarnings": [
+            "Ingredient quantity is zero and requires review."
+          ]
+        }
+      ],
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "DESSERT",
+      "difficulty": "HARD"
+    },
+    "1. Pasta sucrée": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "BASE",
+      "difficulty": "MEDIUM"
+    },
+    "2. Pasta choux": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "BASE",
+      "difficulty": "MEDIUM"
+    },
+    "3. Crema pastelera": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "BASE",
+      "difficulty": "MEDIUM"
+    },
+    "4. Ganache de chocolate": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "BASE",
+      "difficulty": "EASY"
+    },
+    "7. Jalea de piña": {
+      "approved": true,
+      "category": "NATIONAL",
+      "countryCode": "CR",
+      "type": "SAUCE",
+      "difficulty": "EASY"
+    },
+    "8. Brownie": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "US",
+      "type": "DESSERT",
+      "difficulty": "EASY"
+    },
+    "9. Salsa de caramelo": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "type": "SAUCE",
+      "difficulty": "EASY",
+      "countryCode": "FR"
+    },
+    "11. Crema de mantequilla": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "BASE",
+      "difficulty": "EASY"
+    },
+    "12. Tarta tatín de manzana": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM"
+    },
+    "13. Torta fría de melocotón": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "type": "DESSERT",
+      "difficulty": "EASY",
+      "countryCode": "CR"
+    },
+    "14. Queque de chocolate": {
+      "approved": true,
+      "category": "NATIONAL",
+      "countryCode": "CR",
+      "type": "DESSERT",
+      "difficulty": "EASY"
+    },
+    "15. Mousse de chocolate": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM"
+    },
+    "16. Crema chantilly": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "BASE",
+      "difficulty": "EASY"
+    },
+    "18. Base de galleta": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "type": "BASE",
+      "difficulty": "EASY",
+      "countryCode": "US"
+    },
+    "19. Coulis frutos rojos": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "SAUCE",
+      "difficulty": "EASY"
+    },
+    "20. Arrollado": {
+      "approved": true,
+      "category": "NATIONAL",
+      "countryCode": "CR",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM"
+    },
+    "21.Peras pochadas": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM"
+    },
+    "24. Sopa Minestrone": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "IT",
+      "type": "MAIN_COURSE",
+      "difficulty": "MEDIUM"
+    },
+    "28. Roux": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "BASE",
+      "difficulty": "EASY"
+    },
+    "29. Fondo Claro": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "BASE",
+      "difficulty": "EASY"
+    },
+    "30. Fondo Oscuro": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "BASE",
+      "difficulty": "EASY"
+    },
+    "25. Crema vichessoa ": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "MAIN_COURSE",
+      "difficulty": "EASY"
+    },
+    "26. Gazpacho Andaluz ": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "ES",
+      "type": "MAIN_COURSE",
+      "difficulty": "EASY"
+    },
+    "27. Salsa Roja Madre ": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "type": "SAUCE",
+      "difficulty": "EASY",
+      "countryCode": "FR"
+    },
+    "31. Fondo de Pescado": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "BASE",
+      "difficulty": "EASY"
+    },
+    "32. Salsa Tártara": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "SAUCE",
+      "difficulty": "EASY"
+    },
+    "33. Salsa Holandesa": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "SAUCE",
+      "difficulty": "EASY"
+    },
+    "34. Salsa Bechamel": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "SAUCE",
+      "difficulty": "EASY"
+    },
+    "39. Cop au vin": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "FR",
+      "type": "MAIN_COURSE",
+      "difficulty": "MEDIUM"
+    },
+    "46. Salsa Verde": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "MX",
+      "type": "SAUCE",
+      "difficulty": "MEDIUM"
+    },
+    "50. Quesadilla": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "MX",
+      "type": "MAIN_COURSE",
+      "difficulty": "EASY"
+    },
+    "51. Picadillo de papa chorizo": {
+      "approved": true,
+      "category": "NATIONAL",
+      "countryCode": "CR",
+      "type": "MAIN_COURSE",
+      "difficulty": "EASY"
+    },
+    "52. Enyucado de carne": {
+      "approved": true,
+      "category": "NATIONAL",
+      "countryCode": "CR",
+      "type": "MAIN_COURSE",
+      "difficulty": "MEDIUM"
+    },
+    "54. Conchas de Chocolate": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "MX",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM"
+    },
+    "55. trenza de nutella": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM",
+      "countryCode": "IT"
+    },
+    "56. Tres Leches": {
+      "approved": true,
+      "category": "NATIONAL",
+      "countryCode": "CR",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM"
+    },
+    "57. Panacota de Nutella": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "IT",
+      "type": "DESSERT",
+      "difficulty": "EASY"
+    },
+    "58. Crema Catalana": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "ES",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM"
+    },
+    "59. Flan casero": {
+      "approved": true,
+      "category": "NATIONAL",
+      "countryCode": "CR",
+      "type": "DESSERT",
+      "difficulty": "EASY"
+    },
+    "60. Rollos de canela": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "type": "DESSERT",
+      "difficulty": "MEDIUM",
+      "countryCode": "US"
+    },
+    "61. Rollos de pizza": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "IT",
+      "type": "MAIN_COURSE",
+      "difficulty": "EASY"
+    },
+    "62. Tarta Rogel": {
+      "approved": true,
+      "category": "INTERNATIONAL",
+      "countryCode": "AR",
+      "type": "DESSERT",
+      "difficulty": "HARD"
+    }
+  }
+}

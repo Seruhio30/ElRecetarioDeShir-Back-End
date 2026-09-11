@@ -125,20 +125,41 @@ Persistence foundation completada con:
 
 Para peticiones Admin que modifican estado, el frontend debe obtener primero el token mediante `GET /api/admin/auth/csrf` y enviarlo en el header `X-CSRF-TOKEN`. Las peticiones cross-origin de Admin deben usar la cookie de sesión con credentials.
 
-## Siguiente bloque
+## Excel recipe import
 
-Excel recipe import, después de cerrar y revisar este preflight.
+The Excel recipe import pipeline reads the canonical recipe workbook, applies declarative human-reviewed overrides, produces a dry-run plan and can import approved recipes as `DRAFT`.
 
-## Excel recipe preflight
+The canonical workbook remains external to Git. For local validation:
 
-The Excel recipe preflight reads the canonical recipe workbook without persisting data.
-
-For local validation, configure:
-
+```bash
 RECIPE_EXCEL_PATH=/mnt/c/Users/sherr/Downloads/Recetas.xlsx
+EXCEL_RECIPE_IMPORT_OVERRIDES="$PWD/config/recipe-import-overrides.json"
+EXCEL_RECIPE_LEGACY_CATALOG="$PWD/src/test/resources/legacy/recipes.json"
+```
 
-The generated report is written to:
+Import execution is explicitly gated by the `excel-import` Spring profile and `EXCEL_RECIPE_IMPORT_ENABLED=true`.
 
-target/recipe-preflight.json
+Dry-run is enabled by default with `EXCEL_RECIPE_IMPORT_DRY_RUN=true`.
 
-The target directory is ignored by Git.
+The dry-run report defaults to:
+
+```text
+target/recipe-import-dry-run.json
+```
+
+The current reviewed dataset contains 62 approved Excel recipes with no unresolved review warnings. The canonical workbook contains 60 embedded recipe images; two reviewed recipes are explicitly allowed to remain without an image.
+
+The dry-run also compares workbook identities against the versioned legacy recipe catalog. The current catalog contains 12 known name-and-slug collisions. These collisions are reported separately from database `CONFLICT` and `PARTIAL_STATE` results and block real import execution.
+
+Approved imports are designed to:
+
+- create recipes as `DRAFT`;
+- preserve structured yield, ingredients, steps and reviewed display text;
+- import supported embedded workbook images;
+- remain idempotent through aggregate comparison;
+- distinguish `NEW`, `ALREADY_IMPORTED`, `CONFLICT` and `PARTIAL_STATE`;
+- clean up newly created media when a transaction rolls back.
+
+Human review decisions live in `config/recipe-import-overrides.json`; recipe metadata is no longer hardcoded in Java.
+
+No real Excel recipe import against `elrecetariodeshir_db` was executed while establishing this pipeline. Validation used only the guarded `elrecetariodeshir_test` database and dry-run mode.

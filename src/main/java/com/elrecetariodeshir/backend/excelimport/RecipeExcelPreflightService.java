@@ -70,27 +70,13 @@ public final class RecipeExcelPreflightService {
         var yieldResult = RecipeYieldNormalizer.normalize(sheet.yieldRaw());
         warnings.addAll(yieldResult.warnings());
 
-        var approved = ExcelRecipeApprovedMetadata.find(sheet.originalName());
+        String countryCode = null;
+        RecipeType type = null;
 
-        String countryCode = approved == null
-                ? null
-                : approved.countryCode();
-
-        RecipeType type = approved == null
-                ? null
-                : approved.type();
-
-        RecipeDifficulty difficulty = mapDifficulty(sheet.difficultyRaw());
-
-        if (difficulty == null && approved != null) {
-            difficulty = approved.difficulty();
-        }
+        RecipeDifficulty difficulty =
+                mapDifficulty(sheet.difficultyRaw());
 
         Integer time = parseTime(sheet.timeRaw());
-
-        if (time == null && approved != null) {
-            time = approved.timeMinutes();
-        }
 
         if (!sheet.imageExists()) {
             warnings.add("Recipe image is missing.");
